@@ -4,7 +4,7 @@ import BaseLogo from '../ui/BaseLogo.vue'
 
 <template>
   <header
-    class="flex w-full bg-white z-50 absolute justify-between items-center gap-6 h-16 px-6 border-b border-gray-200"
+    class="flex w-full bg-white shrink-0 justify-between items-center gap-6 h-16 px-6 border-b border-gray-200"
   >
     <BaseLogo />
 
