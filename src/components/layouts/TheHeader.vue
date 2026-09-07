@@ -3,12 +3,14 @@ import BaseLogo from '../ui/BaseLogo.vue'
 </script>
 
 <template>
-  <header class="flex justify-between items-center gap-6 h-16 px-6 border-b border-gray-200">
+  <header
+    class="flex w-full bg-white z-50 absolute justify-between items-center gap-6 h-16 px-6 border-b border-gray-200"
+  >
     <BaseLogo />
 
     <label
       for="searchToDo"
-      class="flex-1 max-w-[500px] flex items-center gap-4 border border-gray-200 rounded-xl p-3 h-fit bg-gray-50 transition-colors focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200"
+      class="flex-1 max-w-125 flex items-center gap-4 border border-gray-200 rounded-xl p-3 h-fit bg-gray-50 transition-colors focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
