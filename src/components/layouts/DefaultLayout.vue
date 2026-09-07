@@ -1,7 +1,11 @@
 <script setup>
-  import TheHeader from './TheHeader.vue'
+import TheHeader from './TheHeader.vue'
+import TheSidabar from './TheSidabar.vue'
 </script>
 
 <template>
-  <TheHeader />
+  <div class="bg-gray-50">
+    <TheHeader />
+    <TheSidabar />
+  </div>
 </template>
