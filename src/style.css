@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin "../tailwind-forms.js";
 
 @theme {
   --font-sans: 'Inter', ui-sans-serif, sans-serif;
