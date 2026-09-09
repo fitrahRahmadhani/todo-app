@@ -1,10 +1,42 @@
 <script setup>
 import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
-import TaskList from '@/components/ui/TaskList.vue'
+import TaskLists from '@/components/ui/TaskLists.vue'
+import { Plus } from '@lucide/vue'
 </script>
 
 <template>
   <DefaultLayout>
-    <TaskList />
+    <div class="space-y-2 mb-8">
+      <div>
+        <h6 class="font-semibold text-2xl">Today's Focus</h6>
+        <p class="text-sm text-gray-500">
+          Plan your day, accomplish your priorities. You have 3 tasks pending.
+        </p>
+      </div>
+
+      <div
+        class="flex items-center gap-3 bg-white p-2 pl-6 mt-4 rounded-xl border border-gray-200 shadow-sm transition-shadow focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100"
+      >
+        <label for="addToDo" class="flex-1">
+          <span class="sr-only">Tambah tugas baru</span>
+          <input
+            type="text"
+            name="addToDo"
+            id="addToDo"
+            class="w-full outline-none text-sm text-gray-700 placeholder:text-gray-400"
+            placeholder="Add a new task... Press Enter to create"
+          />
+        </label>
+
+        <button
+          type="button"
+          class="flex items-center gap-1.5 text-sm font-medium px-3 py-2 rounded-lg bg-blue-500 text-white shrink-0 hover:bg-blue-600 active:bg-blue-700 transition-colors"
+        >
+          <Plus :size="16" />
+          Add Task
+        </button>
+      </div>
+    </div>
+    <TaskLists />
   </DefaultLayout>
 </template>
