@@ -10,7 +10,7 @@ import TheSidabar from './TheSidabar.vue'
     <div class="flex flex-1 overflow-hidden">
       <TheSidabar class="shrink-0" />
 
-      <main class="flex-1 overflow-y-auto p-8">
+      <main class="flex-1 overflow-y-auto pl-8">
         <slot></slot>
       </main>
     </div>
