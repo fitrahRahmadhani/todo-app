@@ -2,12 +2,15 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
 import BaseDrawer from '@/components/ui/BaseDrawer.vue'
 import TaskLists from '@/components/ui/TaskLists.vue'
+import { useTaskDrawer } from '@/stores/taskDrawer'
 import { Plus } from '@lucide/vue'
+
+const taskDrawer = useTaskDrawer()
 </script>
 
 <template>
   <DefaultLayout>
-    <div class="flex h-full">
+    <div class="flex h-full min-h-0 overflow-y-scroll">
       <div class="flex-1 pt-8 pr-8">
         <div class="space-y-2 mb-8">
           <div>
@@ -42,7 +45,12 @@ import { Plus } from '@lucide/vue'
         </div>
         <TaskLists />
       </div>
-      <BaseDrawer />
+      <div
+        class="shrink-0 overflow-hidden transition-[width] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        :class="taskDrawer.isOpen ? 'w-96' : 'w-0'"
+      >
+        <BaseDrawer />
+      </div>
     </div>
   </DefaultLayout>
 </template>

@@ -10,5 +10,9 @@ import TaskCard from './TaskCard.vue'
     </div>
     <TaskCard />
     <TaskCard />
+    <TaskCard />
+    <TaskCard />
+    <TaskCard />
+    <TaskCard />
   </div>
 </template>
