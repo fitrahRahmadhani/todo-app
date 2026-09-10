@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { useTaskDrawer } from '@/stores/taskDrawer'
 import { Calendar, CirclePlus, Flag, FlagTriangleRight, Folder, X } from '@lucide/vue'
+
+const taskDrawer = useTaskDrawer()
 </script>
 
 <template>
   <div
-    class="w-96 flex flex-col space-y-8 p-8 h-full bg-white border-l items-start border-gray-200 shrink-0"
+    class="w-96 flex flex-col space-y-8 p-8 overflow-y-scroll no-scrollbar bg-white border-l items-start border-gray-200 shrink-0"
+    :class="taskDrawer.isOpen ? 'opacity-100 delay-150' : 'opacity-0 delay-0'"
   >
     <div class="w-full flex items-center justify-between">
       <div class="flex items-center gap-2 text-blue-500">
@@ -12,6 +16,7 @@ import { Calendar, CirclePlus, Flag, FlagTriangleRight, Folder, X } from '@lucid
         <p class="uppercase text-sm text-blue-500 font-semibold">active task</p>
       </div>
       <button
+        @click="taskDrawer.closeDrawer"
         class="bg-gray-100 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
       >
         <X />

@@ -1,13 +1,17 @@
 <script setup>
 import BaseBadge from '@/components/ui/BaseBadge.vue'
+import { useTaskDrawer } from '@/stores/taskDrawer'
 import { Calendar, Pen, Trash } from '@lucide/vue'
+
+const taskDrawer = useTaskDrawer()
 </script>
 
 <template>
   <div
+    @click="taskDrawer.openDrawer"
     class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white py-4 px-4 sm:px-6 border border-gray-200 rounded-xl"
   >
-    <div class="flex items-start sm:items-center gap-4 min-w-0">
+    <div class="flex items-start sm:items-center gap-4 min-w-0 cursor-pointer">
       <input
         type="checkbox"
         name=""
