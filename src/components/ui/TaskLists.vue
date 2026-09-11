@@ -1,5 +1,8 @@
 <script setup>
+import { useTask } from '@/stores/task.js'
 import TaskCard from './TaskCard.vue'
+
+const task = useTask()
 </script>
 
 <template>

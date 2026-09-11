@@ -1,6 +1,7 @@
 <script setup>
 import TheHeader from './TheHeader.vue'
 import TheSidabar from './TheSidabar.vue'
+import BaseDrawer from '../ui/BaseDrawer.vue'
 </script>
 
 <template>
@@ -13,6 +14,8 @@ import TheSidabar from './TheSidabar.vue'
       <main class="flex-1 pl-8 min-h-0">
         <slot></slot>
       </main>
+
+      <BaseDrawer />
     </div>
   </div>
 </template>

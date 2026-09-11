@@ -4,14 +4,3 @@
 @theme {
   --font-sans: 'Inter', ui-sans-serif, sans-serif;
 }
-
-@layer utilities {
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge lama */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge Chromium */
-  }
-}

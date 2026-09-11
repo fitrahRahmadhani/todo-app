@@ -1,11 +1,7 @@
 <script setup>
 import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
-import BaseDrawer from '@/components/ui/BaseDrawer.vue'
 import TaskLists from '@/components/ui/TaskLists.vue'
-import { useTaskDrawer } from '@/stores/taskDrawer'
 import { Plus } from '@lucide/vue'
-
-const taskDrawer = useTaskDrawer()
 </script>
 
 <template>
@@ -44,12 +40,6 @@ const taskDrawer = useTaskDrawer()
           </div>
         </div>
         <TaskLists />
-      </div>
-      <div
-        class="shrink-0 overflow-hidden transition-[width] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
-        :class="taskDrawer.isOpen ? 'w-96' : 'w-0'"
-      >
-        <BaseDrawer />
       </div>
     </div>
   </DefaultLayout>
