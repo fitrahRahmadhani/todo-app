@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useTaskDrawer = defineStore('taskDrawer', () => {
+export const useTaskDrawerStore = defineStore('taskDrawer', () => {
   const isOpen = ref(false)
   const activeTask = ref(null)
 

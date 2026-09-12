@@ -1,8 +1,9 @@
 <script setup>
-import { useTaskDrawer } from '@/stores/taskDrawer'
+import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
+import { formatTaskDate } from '@/utils/formatDate'
 import { Calendar, CirclePlus, Flag, FlagTriangleRight, Folder, X } from '@lucide/vue'
 
-const taskDrawer = useTaskDrawer()
+const taskDrawer = useTaskDrawerStore()
 </script>
 
 <template>
@@ -34,7 +35,7 @@ const taskDrawer = useTaskDrawer()
           <Calendar :size="16" />
           <p>Due Date</p>
         </div>
-        <p class="text-right">{{ taskDrawer.activeTask?.dueDate }}</p>
+        <p class="text-right">{{ formatTaskDate(taskDrawer.activeTask?.dueDate) }}</p>
         <div class="flex items-center gap-2">
           <FlagTriangleRight :size="16" />
           <p>Priority</p>

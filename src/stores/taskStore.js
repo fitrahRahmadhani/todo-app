@@ -2,7 +2,7 @@ import { taskService } from '@/services/taskService'
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 
-export const useTask = defineStore('task', () => {
+export const useTaskStore = defineStore('task', () => {
   const tasks = ref(taskService.getAll())
 
   watch(

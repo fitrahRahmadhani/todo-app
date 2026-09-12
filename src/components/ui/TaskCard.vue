@@ -1,9 +1,10 @@
 <script setup>
 import BaseBadge from '@/components/ui/BaseBadge.vue'
-import { useTaskDrawer } from '@/stores/taskDrawer'
+import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
+import { formatTaskDate } from '@/utils/formatDate'
 import { Calendar, Pen, Trash } from '@lucide/vue'
 
-const taskDrawer = useTaskDrawer()
+const taskDrawer = useTaskDrawerStore()
 const props = defineProps({
   task: { type: Object, required: true },
 })
@@ -27,7 +28,7 @@ const props = defineProps({
         </p>
         <div class="flex flex-wrap gap-1 items-center text-xs text-gray-500 mt-1">
           <Calendar :size="12" class="shrink-0" />
-          <p>{{ task.dueDate }}</p>
+          <p>{{ formatTaskDate(task.dueDate) }}</p>
           <span class="mx-1 hidden sm:inline">•</span>
           <p class="text-gray-400">{{ task.project }}</p>
         </div>

@@ -1,8 +1,8 @@
 <script setup>
-import { useTask } from '@/stores/task.js'
+import { useTaskStore } from '@/stores/taskStore.js'
 import TaskCard from './TaskCard.vue'
 
-const task = useTask()
+const task = useTaskStore()
 </script>
 
 <template>
