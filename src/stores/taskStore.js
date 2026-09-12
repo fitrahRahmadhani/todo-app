@@ -13,5 +13,11 @@ export const useTaskStore = defineStore('task', () => {
     { deep: true },
   )
 
-  return { tasks }
+  function toggleSubtask(taskId, subtaskId) {
+    const task = tasks.value.find((t) => t.id === taskId)
+    const subTask = task?.subtasks.find((s) => s.id === subtaskId)
+    if (subTask) subTask.completed = !subTask.completed
+  }
+
+  return { tasks, toggleSubtask }
 })
