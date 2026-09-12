@@ -7,7 +7,7 @@ import { Plus } from '@lucide/vue'
 <template>
   <DefaultLayout>
     <div class="flex h-full min-h-0 overflow-y-scroll">
-      <div class="flex-1 pt-8 pr-8">
+      <div class="flex-1 py-8 pr-8">
         <div class="space-y-2 mb-8">
           <div>
             <h6 class="font-semibold text-2xl">Today's Focus</h6>
