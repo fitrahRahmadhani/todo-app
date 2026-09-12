@@ -4,11 +4,14 @@ import { useTaskDrawer } from '@/stores/taskDrawer'
 import { Calendar, Pen, Trash } from '@lucide/vue'
 
 const taskDrawer = useTaskDrawer()
+const props = defineProps({
+  task: { type: Object, required: true },
+})
 </script>
 
 <template>
   <div
-    @click="taskDrawer.openDrawer"
+    @click="taskDrawer.openDrawer(task)"
     class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white py-4 px-4 sm:px-6 border border-gray-200 rounded-xl"
   >
     <div class="flex items-start sm:items-center gap-4 min-w-0 cursor-pointer">
@@ -20,19 +23,19 @@ const taskDrawer = useTaskDrawer()
       />
       <div class="min-w-0">
         <p class="text-sm font-medium line-clamp-1 sm:truncate">
-          Review Q3 strategy proposal and prepare alignmeny presentation
+          {{ task.title }}
         </p>
         <div class="flex flex-wrap gap-1 items-center text-xs text-gray-500 mt-1">
           <Calendar :size="12" class="shrink-0" />
-          <p>Today, 4.00 PM</p>
+          <p>{{ task.dueDate }}</p>
           <span class="mx-1 hidden sm:inline">•</span>
-          <p class="text-gray-400">Personal Space</p>
+          <p class="text-gray-400">{{ task.project }}</p>
         </div>
       </div>
     </div>
 
     <div class="flex gap-4 items-center justify-between sm:justify-end shrink-0 pl-9 sm:pl-0">
-      <BaseBadge status="high" />
+      <BaseBadge :status="task.priority" />
       <div class="flex gap-3">
         <button class="text-gray-500">
           <Pen :size="18" />

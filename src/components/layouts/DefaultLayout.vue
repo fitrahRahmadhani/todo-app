@@ -8,7 +8,7 @@ import BaseDrawer from '../ui/BaseDrawer.vue'
   <div class="flex flex-col h-screen bg-gray-50">
     <TheHeader class="shrink-0" />
 
-    <div class="flex flex-1 overflow-hidden">
+    <div class="flex flex-1">
       <TheSidabar class="shrink-0" />
 
       <main class="flex-1 pl-8 min-h-0">

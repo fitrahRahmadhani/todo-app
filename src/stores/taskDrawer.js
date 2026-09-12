@@ -5,7 +5,7 @@ export const useTaskDrawer = defineStore('taskDrawer', () => {
   const isOpen = ref(false)
   const activeTask = ref(null)
 
-  function openDrawer(task = null) {
+  function openDrawer(task) {
     isOpen.value = true
     activeTask.value = task
   }
