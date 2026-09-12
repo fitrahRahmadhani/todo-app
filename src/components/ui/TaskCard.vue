@@ -1,10 +1,12 @@
 <script setup>
 import BaseBadge from '@/components/ui/BaseBadge.vue'
 import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
+import { useTaskStore } from '@/stores/taskStore'
 import { formatTaskDate } from '@/utils/formatDate'
 import { Calendar, Pen, Trash } from '@lucide/vue'
 
-const taskDrawer = useTaskDrawerStore()
+const taskDrawerStore = useTaskDrawerStore()
+const taskStore = useTaskStore()
 const props = defineProps({
   task: { type: Object, required: true },
 })
@@ -12,21 +14,30 @@ const props = defineProps({
 
 <template>
   <div
-    @click="taskDrawer.openDrawer(task)"
+    @click="taskDrawerStore.openDrawer(task)"
     class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white py-4 px-4 sm:px-6 border border-gray-200 rounded-xl"
   >
-    <div class="flex items-start sm:items-center gap-4 min-w-0 cursor-pointer">
+    <div class="flex items-start sm:items-center gap-4 min-w-0">
       <input
         type="checkbox"
-        name=""
-        id=""
-        class="form-checkbox w-5 h-5 shrink-0 mt-1 sm:mt-0 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2"
+        :id="task.id"
+        :checked="task.completed"
+        class="form-checkbox w-5 h-5 shrink-0 mt-1 sm:mt-0 rounded cursor-pointer border-gray-300 focus:ring-2"
+        :class="task.completed ? 'text-gray-400 focus:ring-gray-300' : ' focus:ring-blue-500'"
+        @click.stop
+        @change="taskStore.toggleTask(task.id)"
       />
       <div class="min-w-0">
-        <p class="text-sm font-medium line-clamp-1 sm:truncate">
+        <p
+          class="text-sm font-medium line-clamp-1 sm:truncate"
+          :class="task.completed ? 'line-through text-gray-400' : ''"
+        >
           {{ task.title }}
         </p>
-        <div class="flex flex-wrap gap-1 items-center text-xs text-gray-500 mt-1">
+        <div
+          class="flex flex-wrap gap-1 items-center text-xs text-gray-500 mt-1"
+          v-if="!task.completed"
+        >
           <Calendar :size="12" class="shrink-0" />
           <p>{{ formatTaskDate(task.dueDate) }}</p>
           <span class="mx-1 hidden sm:inline">•</span>
