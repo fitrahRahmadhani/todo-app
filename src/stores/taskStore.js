@@ -14,6 +14,8 @@ export const useTaskStore = defineStore('task', () => {
     return tasks.value.filter((t) => t.completed && isToday(t.createdAt))
   })
 
+  const audio = new Audio('/sounds/success-confirmation.mp3')
+
   watch(
     tasks,
     (newTasks) => {
@@ -24,7 +26,15 @@ export const useTaskStore = defineStore('task', () => {
 
   function toggleTask(taskId) {
     const task = tasks.value.find((t) => t.id === taskId)
-    if (task) task.completed = !task.completed
+    if (!task) return
+
+    task.completed = !task.completed
+
+    if (task.completed) {
+      audio.pause()
+      audio.currentTime = 0
+      audio.play()
+    }
   }
 
   function toggleSubtask(taskId, subtaskId) {
