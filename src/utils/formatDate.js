@@ -11,3 +11,16 @@ export function formatTaskDate(isoDate) {
 
   return `${dayName}, ${date.getDate()} ${monthShort} ${date.getFullYear()}`
 }
+
+export function isToday(dateInput) {
+  if (!dateInput) return false
+
+  const date = new Date(dateInput)
+  const today = new Date()
+
+  return (
+    date.getFullYear() === today.getFullYear() &&
+    date.getMonth() === today.getMonth() &&
+    date.getDate() === today.getDate()
+  )
+}
