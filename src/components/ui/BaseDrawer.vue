@@ -1,9 +1,11 @@
 <script setup>
 import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
+import { useTaskStore } from '@/stores/taskStore'
 import { formatTaskDate } from '@/utils/formatDate'
 import { Calendar, CirclePlus, Flag, FlagTriangleRight, Folder, X } from '@lucide/vue'
 
 const taskDrawer = useTaskDrawerStore()
+const task = useTaskStore()
 </script>
 
 <template>
@@ -40,7 +42,7 @@ const taskDrawer = useTaskDrawerStore()
           <FlagTriangleRight :size="16" />
           <p>Priority</p>
         </div>
-        <p class="text-right">{{ taskDrawer.activeTask?.priority }}</p>
+        <p class="text-right capitalize">{{ taskDrawer.activeTask?.priority }}</p>
         <div class="flex items-center gap-2">
           <Folder :size="16" />
           <p>List Project</p>
@@ -63,7 +65,7 @@ const taskDrawer = useTaskDrawerStore()
               <CirclePlus :size="14" />
             </button>
           </div>
-          <div class="space-y-3 text-gray-800">
+          <div class="space-y-3">
             <label
               class="flex items-center gap-2"
               v-for="subtask in taskDrawer.activeTask?.subtasks"
@@ -74,9 +76,13 @@ const taskDrawer = useTaskDrawerStore()
                 type="checkbox"
                 :id="subtask.id"
                 :checked="subtask.completed"
-                class="form-checkbox self-start w-4 h-4 shrink-0 mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2"
+                @change="task.toggleSubtask(taskDrawer.activeTask?.id, subtask.id)"
+                class="form-checkbox self-start w-4 h-4 shrink-0 mt-1 rounded border-gray-300 focus:ring-2"
+                :class="
+                  subtask.completed ? 'text-gray-400 focus:ring-gray-300' : ' focus:ring-blue-500'
+                "
               />
-              <p>
+              <p :class="subtask.completed ? 'text-gray-400 line-through' : 'text-gray-800'">
                 {{ subtask.title }}
               </p>
             </label>
