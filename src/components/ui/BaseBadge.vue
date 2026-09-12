@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="uppercase text-xs font-medium px-2 py-1 rounded-lg bg-red-100 text-red-600"
-    :class="statusClasses"
-  >
+  <div class="uppercase text-xs font-medium px-2 py-1 rounded-lg" :class="statusClasses">
     <p>{{ status }}</p>
   </div>
 </template>
@@ -24,5 +21,5 @@ const statusStyle = {
   low: 'bg-blue-100 text-blue-600',
 }
 
-const statusClasses = computed(() => statusClasses[props.status])
+const statusClasses = computed(() => statusStyle[props.status])
 </script>

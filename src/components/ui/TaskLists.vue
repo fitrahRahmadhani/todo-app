@@ -1,8 +1,8 @@
 <script setup>
-import { useTask } from '@/stores/task.js'
+import { useTaskStore } from '@/stores/taskStore.js'
 import TaskCard from './TaskCard.vue'
 
-const task = useTask()
+const task = useTaskStore()
 </script>
 
 <template>
@@ -11,11 +11,6 @@ const task = useTask()
       <p class="uppercase text-sm text-gray-500">pending task</p>
       <div class="flex-1 h-px bg-gray-200"></div>
     </div>
-    <TaskCard />
-    <TaskCard />
-    <TaskCard />
-    <TaskCard />
-    <TaskCard />
-    <TaskCard />
+    <TaskCard v-for="task in task.tasks" :key="task.id" :task="task" />
   </div>
 </template>

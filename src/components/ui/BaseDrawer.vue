@@ -1,8 +1,9 @@
-<script setup lang="ts">
-import { useTaskDrawer } from '@/stores/taskDrawer'
+<script setup>
+import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
+import { formatTaskDate } from '@/utils/formatDate'
 import { Calendar, CirclePlus, Flag, FlagTriangleRight, Folder, X } from '@lucide/vue'
 
-const taskDrawer = useTaskDrawer()
+const taskDrawer = useTaskDrawerStore()
 </script>
 
 <template>
@@ -27,31 +28,30 @@ const taskDrawer = useTaskDrawer()
         </button>
       </div>
       <p class="text-xl font-medium">
-        Review Q3 strategy proposal and prepare alignmeny presentation
+        {{ taskDrawer.activeTask?.title }}
       </p>
       <div class="grid grid-cols-2 gap-2 w-full text-sm text-gray-500">
         <div class="flex items-center gap-2">
           <Calendar :size="16" />
           <p>Due Date</p>
         </div>
-        <p class="text-right">08 Des 2026</p>
+        <p class="text-right">{{ formatTaskDate(taskDrawer.activeTask?.dueDate) }}</p>
         <div class="flex items-center gap-2">
           <FlagTriangleRight :size="16" />
           <p>Priority</p>
         </div>
-        <p class="text-right">High</p>
+        <p class="text-right">{{ taskDrawer.activeTask?.priority }}</p>
         <div class="flex items-center gap-2">
           <Folder :size="16" />
           <p>List Project</p>
         </div>
-        <p class="text-right">Marketing Q3</p>
+        <p class="text-right">{{ taskDrawer.activeTask?.project }}</p>
       </div>
       <div class="space-y-4">
         <div class="text-sm space-y-2 pt-4 border-t border-gray-200">
           <p class="uppercase font-semibold text-gray-500">description</p>
           <p class="text-gray-800">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur beatae earum
-            exercitationem natus in repellat velit reprehenderit reiciendis dolore nostrum?
+            {{ taskDrawer.activeTask?.description }}
           </p>
         </div>
         <div class="text-sm space-y-2 pt-4 border-t border-gray-200">
@@ -64,39 +64,20 @@ const taskDrawer = useTaskDrawer()
             </button>
           </div>
           <div class="space-y-3 text-gray-800">
-            <label for="check" class="flex items-center gap-2">
+            <label
+              class="flex items-center gap-2"
+              v-for="subtask in taskDrawer.activeTask?.subtasks"
+              :key="subtask.id"
+              :for="subtask.id"
+            >
               <input
                 type="checkbox"
-                name="check"
-                id="check"
+                :id="subtask.id"
+                :checked="subtask.completed"
                 class="form-checkbox self-start w-4 h-4 shrink-0 mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2"
               />
               <p>
-                Lorem ipsum dolor sit amet Lorem ipsum dolor sit, amet consectetur adipisicing elit
-              </p>
-            </label>
-            <label for="check2" class="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="check2"
-                id="check2"
-                class="form-checkbox self-start w-4 h-4 shrink-0 mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2"
-              />
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio cumque porro
-                nemo inventore tempora fugit?
-              </p>
-            </label>
-            <label for="check3" class="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="check3"
-                id="check3"
-                class="form-checkbox self-start w-4 h-4 shrink-0 mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2"
-              />
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio cumque porro
-                nemo inventore tempora fugit?
+                {{ subtask.title }}
               </p>
             </label>
           </div>

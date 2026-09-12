@@ -4,7 +4,7 @@ import BaseNavLink from '../ui/BaseNavLink.vue'
 </script>
 
 <template>
-  <aside class="w-60 pt-8 px-6 h-screen border-r border-gray-200 bg-white">
+  <aside class="w-60 pt-8 px-6 h-full border-r border-gray-200 bg-white">
     <nav class="space-y-1">
       <p class="uppercase text-xs text-gray-400 font-semibold mb-2">workspace</p>
       <BaseNavLink to="/">
