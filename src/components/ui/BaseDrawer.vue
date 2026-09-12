@@ -39,9 +39,24 @@ const taskStatus = computed(() => {
           <X />
         </button>
       </div>
-      <p class="text-xl font-medium">
-        {{ taskDrawerStore.activeTask?.title }}
-      </p>
+      <div class="flex gap-3">
+        <input
+          type="checkbox"
+          :id="taskDrawerStore.activeTask?.id"
+          :checked="taskDrawerStore.activeTask?.completed"
+          class="form-checkbox w-5 h-5 shrink-0 mt-1 rounded cursor-pointer border-gray-300 focus:ring-2"
+          :class="
+            taskDrawerStore.activeTask?.completed
+              ? 'text-gray-400 focus:ring-gray-300'
+              : ' focus:ring-blue-500'
+          "
+          @click.stop
+          @change="taskStore.toggleTask(taskDrawerStore.activeTask?.id)"
+        />
+        <p class="text-xl font-medium">
+          {{ taskDrawerStore.activeTask?.title }}
+        </p>
+      </div>
       <div class="grid grid-cols-2 gap-2 w-full text-sm text-gray-500">
         <div class="flex items-center gap-2">
           <Calendar :size="16" />
