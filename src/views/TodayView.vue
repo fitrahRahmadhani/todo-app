@@ -2,14 +2,32 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
 import PriorityDropdown from '@/components/ui/PriorityDropdown.vue'
 import TaskLists from '@/components/ui/TaskLists.vue'
+import { useTaskStore } from '@/stores/taskStore'
 import { formatDateTime } from '@/utils/formatDate'
 import { Calendar, Plus } from '@lucide/vue'
 import { VueDatePicker } from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import { ref } from 'vue'
 
-const dates = ref()
-const priority = ref()
+const taskStore = useTaskStore()
+const newTaskTitle = ref()
+const newTaskDate = ref()
+const newTaskPriority = ref()
+
+function handleAddNewTask() {
+  const title = newTaskTitle.value.trim()
+  if (!title) return
+
+  taskStore.addTask({
+    title,
+    dueDate: newTaskDate.value,
+    priority: newTaskPriority.value,
+  })
+
+  newTaskTitle.value = ''
+  newTaskDate.value = ''
+  newTaskPriority.value = ''
+}
 </script>
 
 <template>
@@ -33,21 +51,22 @@ const priority = ref()
                 type="text"
                 name="addToDo"
                 id="addToDo"
-                class="w-full outline-none text-sm text-gray-700 placeholder:text-gray-400"
+                v-model="newTaskTitle"
+                class="w-full outline-none text-sm text-gray-700 placeholder:text-gray-400 active:bg-none"
                 placeholder="Add a new task... Press Enter to create"
               />
             </label>
 
             <div class="flex items-center gap-2 shrink-0">
-              <PriorityDropdown v-model="priority" />
-              <VueDatePicker v-model="dates" :enable-time-picker="false">
+              <PriorityDropdown v-model="newTaskPriority" />
+              <VueDatePicker v-model="newTaskDate" :enable-time-picker="false">
                 <template #trigger>
                   <button
                     type="button"
                     class="flex items-center gap-2 text-sm text-gray-600 px-3 py-2 rounded-lg border border-gray-200 hover:text-blue-500 hover:border-blue-500 hover:bg-blue-50 transition-colors duration-300"
                   >
                     <span class="p-px"><Calendar :size="18" /></span>
-                    {{ dates ? formatDateTime(dates) : '' }}
+                    {{ newTaskDate ? formatDateTime(newTaskDate) : '' }}
                   </button>
                 </template>
               </VueDatePicker>
@@ -55,6 +74,7 @@ const priority = ref()
               <button
                 type="button"
                 class="flex items-center gap-1.5 text-sm font-medium px-3 py-2 rounded-lg bg-blue-500 text-white shrink-0 hover:bg-blue-600 active:bg-blue-700 transition-colors"
+                @click="handleAddNewTask"
               >
                 <Plus :size="16" />
                 Add Task

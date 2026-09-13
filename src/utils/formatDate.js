@@ -1,15 +1,18 @@
 export function formatTaskDate(isoDate) {
   if (!isoDate) return ''
 
-  const [year, month, day] = isoDate.split('-').map(Number)
-  const date = new Date(year, month - 1, day) // parse as local time, avoids UTC off-by-one
-
-  if (isNaN(date.getTime())) return isoDate
+  const date = new Date(isoDate)
+  if (isNaN(date.getTime())) return ''
 
   const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date)
   const monthShort = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
+  const time = new Intl.DateTimeFormat('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(date)
 
-  return `${dayName}, ${date.getDate()} ${monthShort} ${date.getFullYear()}`
+  return `${dayName}, ${date.getDate()} ${monthShort} ${date.getFullYear()}, ${time}`
 }
 
 export function formatDateTime(dateInput) {

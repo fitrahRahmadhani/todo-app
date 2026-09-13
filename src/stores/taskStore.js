@@ -43,5 +43,27 @@ export const useTaskStore = defineStore('task', () => {
     if (subTask) subTask.completed = !subTask.completed
   }
 
-  return { tasks, pendingTaskToday, completedTaskToday, toggleTask, toggleSubtask }
+  function addTask({ title, dueDate, priority }) {
+    const newTask = {
+      id: crypto.randomUUID(),
+      title: title ?? '',
+      completed: false,
+      priority: priority ?? 'medium',
+      dueDate: dueDate ? new Date(dueDate).toISOString() : new Date().toISOString(),
+      project: '-',
+      description: '-',
+      createdAt: new Date().toISOString(),
+      subtasks: [],
+    }
+    tasks.value.push(newTask)
+  }
+
+  return {
+    tasks,
+    pendingTaskToday,
+    completedTaskToday,
+    toggleTask,
+    toggleSubtask,
+    addTask,
+  }
 })
