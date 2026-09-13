@@ -4,3 +4,23 @@
 @theme {
   --font-sans: 'Inter', ui-sans-serif, sans-serif;
 }
+
+:root {
+  --dp-font-family: inherit;
+  --dp-border-radius: 0.75rem; /* samain sama rounded-xl */
+  --dp-cell-border-radius: 0.5rem;
+
+  --dp-primary-color: #3b82f6; /* blue-500, warna aksen utama */
+  --dp-primary-text-color: #ffffff;
+
+  --dp-border-color: #e5e7eb; /* gray-200 */
+  --dp-border-color-hover: #3b82f6;
+  --dp-background-color: #ffffff;
+
+  --dp-text-color: #1f2937; /* gray-800 */
+  --dp-hover-color: #eff6ff; /* blue-50 */
+  --dp-hover-text-color: #1f2937;
+
+  --dp-icon-color: #9ca3af; /* gray-400 */
+  --dp-font-size: 0.875rem; /* text-sm */
+}
