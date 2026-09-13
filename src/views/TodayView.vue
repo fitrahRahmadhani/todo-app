@@ -1,5 +1,6 @@
 <script setup>
 import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
+import PriorityDropdown from '@/components/ui/PriorityDropdown.vue'
 import TaskLists from '@/components/ui/TaskLists.vue'
 import { formatDateTime } from '@/utils/formatDate'
 import { Calendar, Plus } from '@lucide/vue'
@@ -8,6 +9,7 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import { ref } from 'vue'
 
 const dates = ref()
+const priority = ref()
 </script>
 
 <template>
@@ -37,13 +39,14 @@ const dates = ref()
             </label>
 
             <div class="flex items-center gap-2 shrink-0">
+              <PriorityDropdown v-model="priority" />
               <VueDatePicker v-model="dates" :enable-time-picker="false">
                 <template #trigger>
                   <button
                     type="button"
                     class="flex items-center gap-2 text-sm text-gray-600 px-3 py-2 rounded-lg border border-gray-200 hover:text-blue-500 hover:border-blue-500 hover:bg-blue-50 transition-colors duration-300"
                   >
-                    <Calendar :size="16" />
+                    <span class="p-px"><Calendar :size="18" /></span>
                     {{ dates ? formatDateTime(dates) : '' }}
                   </button>
                 </template>
