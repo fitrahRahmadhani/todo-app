@@ -58,6 +58,13 @@ export const useTaskStore = defineStore('task', () => {
     tasks.value.push(newTask)
   }
 
+  function destroyTask(taskId) {
+    const taskIndex = tasks.value.findIndex((t) => t.id === taskId)
+    if (taskIndex === -1) return
+
+    tasks.value.splice(taskIndex, 1)
+  }
+
   return {
     tasks,
     pendingTaskToday,
@@ -65,5 +72,6 @@ export const useTaskStore = defineStore('task', () => {
     toggleTask,
     toggleSubtask,
     addTask,
+    destroyTask,
   }
 })
