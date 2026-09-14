@@ -2,6 +2,7 @@
 import TheHeader from './TheHeader.vue'
 import TheSidabar from './TheSidabar.vue'
 import BaseDrawer from '../ui/BaseDrawer.vue'
+import ModalConfirmDelete from '../task/ModalConfirmDelete.vue'
 </script>
 
 <template>
@@ -17,5 +18,6 @@ import BaseDrawer from '../ui/BaseDrawer.vue'
 
       <BaseDrawer />
     </div>
+    <ModalConfirmDelete />
   </div>
 </template>

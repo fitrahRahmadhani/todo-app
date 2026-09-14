@@ -1,5 +1,6 @@
 <script setup>
 import BaseBadge from '@/components/ui/BaseBadge.vue'
+import { useConfirmDeleteStore } from '@/stores/confirmDeleteStore'
 import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
 import { useTaskStore } from '@/stores/taskStore'
 import { formatTaskDate } from '@/utils/formatDate'
@@ -7,6 +8,7 @@ import { Calendar, Pen, Trash } from '@lucide/vue'
 
 const taskDrawerStore = useTaskDrawerStore()
 const taskStore = useTaskStore()
+const confirmDeleteModal = useConfirmDeleteStore()
 const props = defineProps({
   task: { type: Object, required: true },
 })
@@ -52,7 +54,10 @@ const props = defineProps({
         <button class="text-gray-500">
           <Pen :size="18" />
         </button>
-        <button class="text-gray-500" @click.stop="taskStore.destroyTask(task.id)">
+        <button
+          class="text-gray-500 p-1 rounded-lg cursor-pointer hover:text-red-400 hover:bg-red-50 transition duration-300 ease-in-out"
+          @click.stop="confirmDeleteModal.openModal(task)"
+        >
           <Trash :size="18" />
         </button>
       </div>

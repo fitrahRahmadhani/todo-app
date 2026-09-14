@@ -37,7 +37,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
 </script>
 
 <template>
-  <div class="relative" ref="dropdownRef">
+  <div ref="dropdownRef">
     <button
       type="button"
       @click="isOpen = !isOpen"
