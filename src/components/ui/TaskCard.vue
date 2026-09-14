@@ -52,7 +52,7 @@ const props = defineProps({
         <button class="text-gray-500">
           <Pen :size="18" />
         </button>
-        <button class="text-gray-500">
+        <button class="text-gray-500" @click.stop="taskStore.destroyTask(task.id)">
           <Trash :size="18" />
         </button>
       </div>
