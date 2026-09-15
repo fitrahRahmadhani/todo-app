@@ -1,12 +1,14 @@
 <script setup>
+import { useConfirmDeleteStore } from '@/stores/confirmDeleteStore'
 import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
 import { useTaskStore } from '@/stores/taskStore'
 import { formatTaskDate } from '@/utils/formatDate'
-import { Calendar, CirclePlus, Flag, FlagTriangleRight, Folder, X } from '@lucide/vue'
+import { Calendar, CirclePlus, Flag, FlagTriangleRight, Folder, Trash, X } from '@lucide/vue'
 import { computed } from 'vue'
 
 const taskDrawerStore = useTaskDrawerStore()
 const taskStore = useTaskStore()
+const confirmDeleteModal = useConfirmDeleteStore()
 
 const taskStatus = computed(() => {
   return taskDrawerStore.activeTask?.completed ? 'completed' : 'active task'
@@ -112,6 +114,15 @@ const taskStatus = computed(() => {
               </p>
             </label>
           </div>
+        </div>
+        <div class="mt-10">
+          <button
+            class="flex items-center gap-2 uppercase text-xs font-semibold text-red-300 p-2 rounded-lg cursor-pointer hover:text-red-500 hover:bg-red-50 transition duration-300 ease-in-out"
+            @click.stop="confirmDeleteModal.openModal(taskDrawerStore.activeTask)"
+          >
+            <Trash :size="18" />
+            <p>delete task</p>
+          </button>
         </div>
       </div>
     </div>
