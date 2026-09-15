@@ -2,9 +2,11 @@ import { taskService } from '@/services/taskService'
 import { isToday } from '@/utils/formatDate'
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
+import { useTaskDrawerStore } from './taskDrawerStore'
 
 export const useTaskStore = defineStore('task', () => {
   const tasks = ref(taskService.getAll())
+  const taskDrawerStore = useTaskDrawerStore()
 
   const pendingTaskToday = computed(() => {
     return tasks.value.filter((t) => !t.completed && isToday(t.createdAt))
