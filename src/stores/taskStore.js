@@ -2,18 +2,20 @@ import { taskService } from '@/services/taskService'
 import { isToday } from '@/utils/formatDate'
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
-import { useTaskDrawerStore } from './taskDrawerStore'
 
 export const useTaskStore = defineStore('task', () => {
   const tasks = ref(taskService.getAll())
-  const taskDrawerStore = useTaskDrawerStore()
 
   const pendingTaskToday = computed(() => {
-    return tasks.value.filter((t) => !t.completed && isToday(t.createdAt))
+    return tasks.value
+      .filter((t) => !t.completed && isToday(t.createdAt))
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   })
 
   const completedTaskToday = computed(() => {
-    return tasks.value.filter((t) => t.completed && isToday(t.createdAt))
+    return tasks.value
+      .filter((t) => t.completed && isToday(t.createdAt))
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   })
 
   const audio = new Audio('/sounds/success-confirmation.mp3')
