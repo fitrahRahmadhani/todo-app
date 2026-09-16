@@ -32,7 +32,7 @@ function handleAddNewTask() {
 
 <template>
   <DefaultLayout>
-    <div class="flex h-full min-h-0 overflow-y-scroll">
+    <div class="flex h-full min-h-0 overflow-y-auto">
       <div class="flex-1 py-8 pr-8">
         <div class="space-y-2 mb-8">
           <div>
