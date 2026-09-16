@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useConfirmDeleteStore = defineStore('confirm-delete', () => {
+export const useEditTaskStore = defineStore('edit-task-store', () => {
   const isOpen = ref()
   const targetTask = ref()
 
@@ -11,8 +11,8 @@ export const useConfirmDeleteStore = defineStore('confirm-delete', () => {
   }
 
   function closeModal() {
-    targetTask.value = null
     isOpen.value = false
+    targetTask.value = null
   }
 
   return { isOpen, targetTask, openModal, closeModal }

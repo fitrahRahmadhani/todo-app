@@ -30,6 +30,31 @@ export function formatDateTime(dateInput) {
   })
 }
 
+export function formatDate(dateInput) {
+  if (!dateInput) return ''
+
+  const date = new Date(dateInput)
+  if (isNaN(date.getTime())) return ''
+
+  return date.toLocaleString('en-US', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
+}
+
+export function formatTimeObject(timeInput) {
+  if (!timeInput) return ''
+
+  const { hours, minutes } = timeInput
+  if (hours == null || minutes == null) return ''
+
+  const paddedHours = String(hours).padStart(2, '0')
+  const paddedMinutes = String(minutes).padStart(2, '0')
+
+  return `${paddedHours}:${paddedMinutes}`
+}
+
 export function isToday(dateInput) {
   if (!dateInput) return false
 

@@ -59,7 +59,7 @@ function handleAddNewTask() {
 
             <div class="flex items-center gap-2 shrink-0">
               <PriorityDropdown v-model="newTaskPriority" />
-              <VueDatePicker v-model="newTaskDate" :enable-time-picker="false">
+              <VueDatePicker v-model="newTaskDate" :time-config="{ timePickerInline: true }">
                 <template #trigger>
                   <button
                     type="button"

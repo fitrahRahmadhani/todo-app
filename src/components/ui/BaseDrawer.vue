@@ -36,9 +36,9 @@ const taskStatus = computed(() => {
         </div>
         <button
           @click="taskDrawerStore.closeDrawer"
-          class="bg-gray-100 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
+          class="bg-gray-50 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
         >
-          <X />
+          <X size="18" />
         </button>
       </div>
       <div class="flex gap-3">

@@ -3,6 +3,7 @@ import TheHeader from './TheHeader.vue'
 import TheSidabar from './TheSidabar.vue'
 import BaseDrawer from '../ui/BaseDrawer.vue'
 import ModalConfirmDelete from '../task/ModalConfirmDelete.vue'
+import ModalEditTask from '../task/ModalEditTask.vue'
 </script>
 
 <template>
@@ -19,5 +20,6 @@ import ModalConfirmDelete from '../task/ModalConfirmDelete.vue'
       <BaseDrawer />
     </div>
     <ModalConfirmDelete />
+    <ModalEditTask />
   </div>
 </template>
