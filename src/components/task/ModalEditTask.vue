@@ -5,7 +5,9 @@ import { ref, watch } from 'vue'
 import { Calendar, ChevronDown, Clock } from '@lucide/vue'
 import { formatDate, formatTimeObject } from '@/utils/formatDate'
 import { useEditTaskStore } from '@/stores/editTaskStore.js'
+import { useTaskStore } from '@/stores/taskStore.js'
 
+const taskStore = useTaskStore()
 const editTaskStore = useEditTaskStore()
 const title = ref()
 const description = ref()
@@ -41,6 +43,27 @@ watch(
     project.value = task.project
   },
 )
+
+function handleSave() {
+  if (!title.value?.trim()) return
+
+  let dueDate = null
+  if (date.value) {
+    const combined = new Date(date.value)
+    combined.setHours(time.value.hours, time.value.minutes)
+    dueDate = combined.toISOString()
+  }
+
+  taskStore.updateTask(editTaskStore.targetTask.id, {
+    title: title.value,
+    description: description.value,
+    dueDate,
+    priority: priority.value,
+    project: project.value,
+  })
+
+  editTaskStore.closeModal()
+}
 </script>
 
 <template>
@@ -94,22 +117,12 @@ watch(
         </label>
         <label for="project" class="flex flex-col gap-2">
           <p class="font-semibold text-sm">Project</p>
-          <div class="relative">
-            <select
-              name="project"
-              id="project"
-              v-model="project"
-              class="w-full appearance-none p-2 pr-9 rounded-lg border border-gray-200 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none"
-            >
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
-            <ChevronDown
-              :size="16"
-              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-            />
-          </div>
+          <input
+            id="project"
+            type="text"
+            class="p-2 rounded-lg border border-gray-200 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+            v-model="project"
+          />
         </label>
         <label for="priority" class="flex flex-col gap-2">
           <p class="font-semibold text-sm">Priority</p>
@@ -140,6 +153,7 @@ watch(
         </button>
         <button
           class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
+          @click="handleSave"
         >
           Save changes
         </button>

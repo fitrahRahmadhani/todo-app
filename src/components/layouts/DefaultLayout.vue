@@ -4,6 +4,8 @@ import TheSidabar from './TheSidabar.vue'
 import BaseDrawer from '../ui/BaseDrawer.vue'
 import ModalConfirmDelete from '../task/ModalConfirmDelete.vue'
 import ModalEditTask from '../task/ModalEditTask.vue'
+import { Toaster } from 'vue-sonner'
+import 'vue-sonner/style.css'
 </script>
 
 <template>
@@ -21,5 +23,6 @@ import ModalEditTask from '../task/ModalEditTask.vue'
     </div>
     <ModalConfirmDelete />
     <ModalEditTask />
+    <Toaster richColors position="top-center" />
   </div>
 </template>
