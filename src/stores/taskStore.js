@@ -2,6 +2,7 @@ import { taskService } from '@/services/taskService'
 import { isToday } from '@/utils/formatDate'
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
+import { toast } from 'vue-sonner'
 
 export const useTaskStore = defineStore('task', () => {
   const tasks = ref(taskService.getAll())
@@ -38,6 +39,7 @@ export const useTaskStore = defineStore('task', () => {
       audio.pause()
       audio.currentTime = 0
       audio.play()
+      toast.info('Task completed')
     }
   }
 
@@ -60,12 +62,14 @@ export const useTaskStore = defineStore('task', () => {
       subtasks: [],
     }
     tasks.value.push(newTask)
+    toast.success('Successful created')
   }
 
   function updateTask(taskId, updates) {
     const task = tasks.value.find((t) => t.id === taskId)
     if (!task) return
     Object.assign(task, updates)
+    toast.success('Successful updated')
   }
 
   function destroyTask(taskId) {
@@ -73,6 +77,7 @@ export const useTaskStore = defineStore('task', () => {
     if (taskIndex === -1) return
 
     tasks.value.splice(taskIndex, 1)
+    toast.success('Successful deleted')
   }
 
   return {

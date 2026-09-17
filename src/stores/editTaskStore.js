@@ -7,7 +7,7 @@ export const useEditTaskStore = defineStore('edit-task-store', () => {
 
   function openModal(task) {
     targetTask.value = task
-    isOpen.value = true
+    if (targetTask) return (isOpen.value = true)
   }
 
   function closeModal() {
