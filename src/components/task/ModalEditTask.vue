@@ -4,11 +4,11 @@ import BaseModal from '../ui/BaseModal.vue'
 import { ref, watch } from 'vue'
 import { Calendar, ChevronDown, Clock } from '@lucide/vue'
 import { formatDate, formatTimeObject } from '@/utils/formatDate'
-import { useEditTaskStore } from '@/stores/editTaskStore.js'
 import { useTaskStore } from '@/stores/taskStore.js'
+import { useModalStore } from '@/stores/modalStore.js'
 
 const taskStore = useTaskStore()
-const editTaskStore = useEditTaskStore()
+const modalStore = useModalStore()
 const title = ref()
 const description = ref()
 const date = ref()
@@ -20,7 +20,7 @@ const priority = ref()
 const project = ref()
 
 watch(
-  () => editTaskStore.targetTask,
+  () => modalStore.payload,
   (task) => {
     if (!task) return
     title.value = task.title
@@ -54,7 +54,7 @@ function handleSave() {
     dueDate = combined.toISOString()
   }
 
-  taskStore.updateTask(editTaskStore.targetTask.id, {
+  taskStore.updateTask(modalStore.payload?.id, {
     title: title.value,
     description: description.value,
     dueDate,
@@ -62,12 +62,16 @@ function handleSave() {
     project: project.value,
   })
 
-  editTaskStore.closeModal()
+  modalStore.closeModal()
 }
 </script>
 
 <template>
-  <BaseModal title="Edit Task" :is-open="editTaskStore.isOpen" @close="editTaskStore.closeModal">
+  <BaseModal
+    title="Edit Task"
+    :is-open="modalStore.isModalOpen('editTask')"
+    @close="modalStore.closeModal()"
+  >
     <div class="space-y-4">
       <label for="title" class="flex flex-col gap-2">
         <p class="font-semibold text-sm">Task title</p>
@@ -147,7 +151,7 @@ function handleSave() {
       <div class="w-full flex mt-10 gap-4 items-center justify-end">
         <button
           class="px-4 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
-          @click="editTaskStore.closeModal"
+          @click="modalStore.closeModal()"
         >
           Cancel
         </button>
