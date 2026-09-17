@@ -1,6 +1,5 @@
 <script setup>
 import BaseBadge from '@/components/ui/BaseBadge.vue'
-import { useEditTaskStore } from '@/stores/editTaskStore'
 import { useModalStore } from '@/stores/modalStore'
 import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
 import { useTaskStore } from '@/stores/taskStore'
@@ -10,7 +9,6 @@ import { Calendar, Pen, Trash } from '@lucide/vue'
 const modalStore = useModalStore()
 const taskDrawerStore = useTaskDrawerStore()
 const taskStore = useTaskStore()
-const editTaskStore = useEditTaskStore()
 const props = defineProps({
   task: { type: Object, required: true },
 })
@@ -55,7 +53,7 @@ const props = defineProps({
       <div class="flex gap-3">
         <button
           class="text-gray-500 p-1 rounded-lg cursor-pointer hover:text-yellow-400 hover:bg-yellow-50 transition duration-300 ease-in-out"
-          @click.stop="editTaskStore.openModal(task)"
+          @click.stop="modalStore.openModal('editTask', task)"
         >
           <Pen :size="18" />
         </button>
