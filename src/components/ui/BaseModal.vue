@@ -14,7 +14,7 @@ const emit = defineEmits(['close'])
     <Transition name="backdrop">
       <div
         v-if="isOpen"
-        class="absolute w-full h-full bg-black/20 backdrop-blur-xs top-0 right-0 flex justify-center items-center"
+        class="absolute w-full h-full z-50 bg-black/20 backdrop-blur-xs top-0 right-0 flex justify-center items-center"
         @click.self="emit('close')"
       >
         <Transition name="modal-content" appear>
@@ -23,9 +23,9 @@ const emit = defineEmits(['close'])
               <p class="font-semibold">{{ title }}</p>
               <button
                 @click="emit('close')"
-                class="bg-gray-100 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
+                class="bg-gray-50 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
               >
-                <X />
+                <X :size="18" />
               </button>
             </div>
             <div class="mt-4">
