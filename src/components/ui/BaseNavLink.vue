@@ -12,7 +12,10 @@
         <slot></slot>
       </span>
     </div>
-    <div class="flex justify-center items-center rounded-md bg-gray-50 w-5 h-5 text-xs">
+    <div
+      class="flex justify-center items-center rounded-md bg-gray-50 w-5 h-5 text-xs"
+      v-if="!isMinimize"
+    >
       <p>2</p>
     </div>
   </router-link>
@@ -22,6 +25,10 @@
 defineProps({
   to: {
     type: [String, Object],
+    required: true,
+  },
+  isMinimize: {
+    type: Boolean,
     required: true,
   },
 })
