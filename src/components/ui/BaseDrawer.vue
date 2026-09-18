@@ -94,26 +94,39 @@ const taskStatus = computed(() => {
             </button>
           </div>
           <div class="space-y-3">
-            <label
-              class="flex items-center gap-2"
+            <div
+              class="flex justify-between items-start"
               v-for="subtask in taskDrawerStore.activeTask?.subtasks"
               :key="subtask.id"
               :for="subtask.id"
             >
-              <input
-                type="checkbox"
-                :id="subtask.id"
-                :checked="subtask.completed"
-                @change="taskStore.toggleSubtask(taskDrawerStore.activeTask?.id, subtask.id)"
-                class="form-checkbox self-start w-4 h-4 shrink-0 mt-1 rounded border-gray-300 focus:ring-2"
-                :class="
-                  subtask.completed ? 'text-gray-400 focus:ring-gray-300' : ' focus:ring-blue-500'
+              <label class="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  :id="subtask.id"
+                  :checked="subtask.completed"
+                  @change="taskStore.toggleSubtask(taskDrawerStore.activeTask?.id, subtask.id)"
+                  class="form-checkbox self-start w-4 h-4 shrink-0 mt-1 rounded border-gray-300 focus:ring-2"
+                  :class="
+                    subtask.completed ? 'text-gray-400 focus:ring-gray-300' : ' focus:ring-blue-500'
+                  "
+                />
+                <p :class="subtask.completed ? 'text-gray-400 line-through' : 'text-gray-800'">
+                  {{ subtask.title }}
+                </p>
+              </label>
+              <button
+                class="text-gray-400 hover:text-gray-600 transition duration-300"
+                @click.stop="
+                  taskStore.destroySubtask({
+                    taskId: taskDrawerStore.activeTask?.id,
+                    subtaskId: subtask.id,
+                  })
                 "
-              />
-              <p :class="subtask.completed ? 'text-gray-400 line-through' : 'text-gray-800'">
-                {{ subtask.title }}
-              </p>
-            </label>
+              >
+                <X :size="14" />
+              </button>
+            </div>
           </div>
         </div>
         <div class="mt-10">

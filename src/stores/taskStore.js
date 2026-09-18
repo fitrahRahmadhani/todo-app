@@ -91,6 +91,16 @@ export const useTaskStore = defineStore('task', () => {
     toast.success('Subtask created successfully')
   }
 
+  function destroySubtask({ taskId, subtaskId }) {
+    const task = tasks.value.find((t) => t.id === taskId)
+    if (!task) return
+
+    const subtaskIndex = task.subtasks.findIndex((s) => s.id === subtaskId)
+    if (subtaskIndex === -1) return
+    task.subtasks.splice(subtaskIndex, 1)
+    toast.success('Subtask deleted successfully')
+  }
+
   return {
     tasks,
     pendingTaskToday,
@@ -101,5 +111,6 @@ export const useTaskStore = defineStore('task', () => {
     updateTask,
     destroyTask,
     addSubtask,
+    destroySubtask,
   }
 })
