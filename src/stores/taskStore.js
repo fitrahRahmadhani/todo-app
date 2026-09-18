@@ -62,14 +62,14 @@ export const useTaskStore = defineStore('task', () => {
       subtasks: [],
     }
     tasks.value.push(newTask)
-    toast.success('Successful created')
+    toast.success('Subtask created successfully')
   }
 
   function updateTask(taskId, updates) {
     const task = tasks.value.find((t) => t.id === taskId)
     if (!task) return
     Object.assign(task, updates)
-    toast.success('Successful updated')
+    toast.success('Subtask updated successfully')
   }
 
   function destroyTask(taskId) {
@@ -77,7 +77,18 @@ export const useTaskStore = defineStore('task', () => {
     if (taskIndex === -1) return
 
     tasks.value.splice(taskIndex, 1)
-    toast.success('Successful deleted')
+    toast.success('Subtask deleted successfully')
+  }
+
+  function addSubtask({ taskId, title }) {
+    const task = tasks.value.find((t) => t.id === taskId)
+    if (!task) return
+    task.subtasks.push({
+      id: crypto.randomUUID(),
+      title,
+      completed: false,
+    })
+    toast.success('Subtask created successfully')
   }
 
   return {
@@ -89,5 +100,6 @@ export const useTaskStore = defineStore('task', () => {
     addTask,
     updateTask,
     destroyTask,
+    addSubtask,
   }
 })

@@ -6,6 +6,7 @@ import ModalConfirmDelete from '../task/ModalConfirmDelete.vue'
 import ModalEditTask from '../task/ModalEditTask.vue'
 import { Toaster } from 'vue-sonner'
 import 'vue-sonner/style.css'
+import ModalCreateSubTask from '../task/ModalCreateSubtask.vue'
 </script>
 
 <template>
@@ -23,6 +24,7 @@ import 'vue-sonner/style.css'
     </div>
     <ModalConfirmDelete />
     <ModalEditTask />
+    <ModalCreateSubTask />
     <Toaster richColors position="top-center" />
   </div>
 </template>
