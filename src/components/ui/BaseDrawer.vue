@@ -88,6 +88,7 @@ const taskStatus = computed(() => {
             <p class="uppercase font-semibold text-gray-500">subtasks (1/3)</p>
             <button
               class="bg-gray-100 text-gray-500 p-1 rounded-full border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
+              @click.stop="modalStore.openModal('createSubtask', taskDrawerStore.activeTask)"
             >
               <CirclePlus :size="14" />
             </button>
