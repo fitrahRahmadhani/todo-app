@@ -13,10 +13,10 @@ import ModalCreateSubTask from '../task/ModalCreateSubtask.vue'
   <div class="flex flex-col h-screen bg-gray-50 overflow-hidden">
     <TheHeader class="shrink-0" />
 
-    <div class="flex flex-1 min-h-0">
+    <div class="flex flex-1 min-h-0 relative">
       <TheSidabar class="shrink-0" />
 
-      <main class="flex-1 pl-8 min-h-0">
+      <main class="flex-1 px-4 md:pl-8 pr-0 min-h-0 overflow-x-hidden">
         <slot></slot>
       </main>
 

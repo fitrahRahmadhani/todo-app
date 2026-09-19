@@ -1,9 +1,12 @@
 <script setup>
 import { useTaskStore } from '@/stores/taskStore.js'
+import { useSidebarStore } from '@/stores/sidebarStore'
 import BaseLogo from '../ui/BaseLogo.vue'
 import { computed } from 'vue'
+import { Menu } from '@lucide/vue'
 
 const taskStore = useTaskStore()
+const sidebarStore = useSidebarStore()
 const progressPercentage = computed(() => {
   if (!taskStore.totalTaskToday) return 0
   return (taskStore.totalCompletedTaskToday / taskStore.totalTaskToday) * 100
@@ -12,13 +15,23 @@ const progressPercentage = computed(() => {
 
 <template>
   <header
-    class="flex w-full bg-white shrink-0 justify-between items-center gap-6 h-16 px-6 border-b border-gray-200"
+    class="flex w-full bg-white shrink-0 justify-between items-center gap-3 md:gap-6 h-16 px-4 md:px-6 border-b border-gray-200"
   >
-    <BaseLogo />
+    <div class="flex items-center gap-2 md:gap-3 min-w-0 shrink-0">
+      <button
+        type="button"
+        class="md:hidden text-gray-500 p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors shrink-0"
+        @click="sidebarStore.toggle()"
+        aria-label="Toggle menu"
+      >
+        <Menu :size="20" />
+      </button>
+      <BaseLogo />
+    </div>
 
     <label
       for="searchToDo"
-      class="flex-1 max-w-125 flex items-center gap-4 border border-gray-200 rounded-xl p-3 h-fit bg-gray-50 transition-colors focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200"
+      class="flex-1 min-w-0 max-w-125 flex items-center gap-4 border border-gray-200 rounded-xl p-3 h-fit bg-gray-50 transition-colors focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -45,8 +58,8 @@ const progressPercentage = computed(() => {
       />
     </label>
 
-    <div class="flex items-center gap-4 shrink-0">
-      <div class="hidden md:flex items-center gap-2 pr-4 border-r border-gray-200">
+    <div class="hidden md:flex items-center gap-4 shrink-0">
+      <div class="flex items-center gap-2">
         <p class="text-sm text-gray-800 whitespace-nowrap" v-if="taskStore.totalTaskToday">
           Today's Progress: <span>{{ taskStore.totalCompletedTaskToday }}</span> /
           <span>{{ taskStore.totalTaskToday }}</span> Done
@@ -61,18 +74,6 @@ const progressPercentage = computed(() => {
             :style="{ width: `${progressPercentage}%` }"
           ></div>
         </div>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <div class="hidden sm:block text-right leading-none">
-          <p class="font-bold text-gray-800">Marcus Vance</p>
-          <p class="text-gray-500 text-sm">Product Lead</p>
-        </div>
-        <img
-          src="https://i.pravatar.cc/300"
-          alt="avatar"
-          class="w-10 h-10 rounded-full object-cover shrink-0"
-        />
       </div>
     </div>
   </header>

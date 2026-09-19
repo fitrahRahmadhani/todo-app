@@ -1,3 +1,4 @@
+import AllTasksView from '@/views/AllTasksView.vue'
 import TodayView from '@/views/TodayView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -8,6 +9,11 @@ const router = createRouter({
       path: '/',
       name: 'today',
       component: TodayView,
+    },
+    {
+      path: '/all-tasks',
+      name: 'all-task',
+      component: AllTasksView,
     },
   ],
 })

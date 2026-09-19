@@ -24,12 +24,19 @@ const totalCompletedSubtasks = computed(() => {
 </script>
 
 <template>
+  <!-- Backdrop, mobile only -->
   <div
-    class="overflow-hidden shrink-0 transition-[width] duration-300 ease-in-out"
-    :class="taskDrawerStore.isOpen ? 'w-96' : 'w-0'"
+    v-if="taskDrawerStore.isOpen"
+    class="fixed inset-0 bg-black/20 z-30 md:hidden"
+    @click="taskDrawerStore.closeDrawer"
+  ></div>
+
+  <div
+    class="fixed md:static inset-y-0 right-0 md:inset-auto z-40 md:z-auto overflow-hidden shrink-0 transition-all duration-300 ease-in-out"
+    :class="taskDrawerStore.isOpen ? 'w-full sm:w-96' : 'w-0'"
   >
     <div
-      class="w-96 h-full flex flex-col space-y-8 p-8 overflow-y-scroll bg-white border-l border-gray-200 items-start transition-opacity duration-200 ease-out"
+      class="w-full sm:w-96 h-full flex flex-col space-y-8 p-6 sm:p-8 overflow-y-scroll bg-white border-l border-gray-200 items-start transition-opacity duration-200 ease-out"
       :class="taskDrawerStore.isOpen ? 'opacity-100 delay-150' : 'opacity-0 delay-0'"
     >
       <div class="w-full flex items-center justify-between">

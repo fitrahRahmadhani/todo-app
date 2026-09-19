@@ -92,7 +92,7 @@ function handleSave() {
           rows="3"
         ></textarea>
       </label>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label for="" class="flex flex-col gap-2">
           <p class="font-semibold text-sm">Due date</p>
           <VueDatePicker v-model="date" :time-config="{ enableTimePicker: false }">
