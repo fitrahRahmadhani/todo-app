@@ -12,7 +12,7 @@ const router = createRouter({
     },
     {
       path: '/all-tasks',
-      name: 'all-task',
+      name: 'all-tasks',
       component: AllTasksView,
     },
   ],
