@@ -19,6 +19,14 @@ export const useTaskStore = defineStore('task', () => {
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   })
 
+  const totalTaskToday = computed(() => {
+    return tasks.value.filter((t) => isToday(t.createdAt)).length
+  })
+
+  const totalCompletedTaskToday = computed(() => {
+    return tasks.value.filter((t) => t.completed && isToday(t.createdAt)).length
+  })
+
   const audio = new Audio('/sounds/success-confirmation.mp3')
 
   watch(
@@ -105,6 +113,8 @@ export const useTaskStore = defineStore('task', () => {
     tasks,
     pendingTaskToday,
     completedTaskToday,
+    totalTaskToday,
+    totalCompletedTaskToday,
     toggleTask,
     toggleSubtask,
     addTask,
