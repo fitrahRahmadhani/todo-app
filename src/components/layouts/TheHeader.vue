@@ -1,5 +1,13 @@
 <script setup>
+import { useTaskStore } from '@/stores/taskStore.js'
 import BaseLogo from '../ui/BaseLogo.vue'
+import { computed } from 'vue'
+
+const taskStore = useTaskStore()
+const progressPercentage = computed(() => {
+  if (!taskStore.totalTaskToday) return 0
+  return (taskStore.totalCompletedTaskToday / taskStore.totalTaskToday) * 100
+})
 </script>
 
 <template>
@@ -39,9 +47,19 @@ import BaseLogo from '../ui/BaseLogo.vue'
 
     <div class="flex items-center gap-4 shrink-0">
       <div class="hidden md:flex items-center gap-2 pr-4 border-r border-gray-200">
-        <p class="text-sm text-gray-800 whitespace-nowrap">Today's Progress: 3/5 Done</p>
-        <div class="w-20 h-2 overflow-hidden bg-gray-200 rounded-4xl">
-          <div class="w-12 h-2 bg-blue-500 rounded-4xl"></div>
+        <p class="text-sm text-gray-800 whitespace-nowrap" v-if="taskStore.totalTaskToday">
+          Today's Progress: <span>{{ taskStore.totalCompletedTaskToday }}</span> /
+          <span>{{ taskStore.totalTaskToday }}</span> Done
+        </p>
+        <p class="text-sm text-gray-500 whitespace-nowrap" v-else>No tasks for today yet</p>
+        <div
+          class="w-20 h-2 overflow-hidden bg-gray-200 rounded-4xl"
+          v-if="taskStore.totalTaskToday"
+        >
+          <div
+            class="h-2 bg-blue-500 rounded-4xl transition-all duration-300"
+            :style="{ width: `${progressPercentage}%` }"
+          ></div>
         </div>
       </div>
 
