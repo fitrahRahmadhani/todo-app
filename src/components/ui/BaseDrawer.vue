@@ -13,6 +13,14 @@ const modalStore = useModalStore()
 const taskStatus = computed(() => {
   return taskDrawerStore.activeTask?.completed ? 'completed' : 'active task'
 })
+
+const totalSubtasks = computed(() => {
+  return taskDrawerStore.activeTask?.subtasks.length ?? '-'
+})
+
+const totalCompletedSubtasks = computed(() => {
+  return taskDrawerStore.activeTask?.subtasks.filter((s) => s.completed).length ?? '-'
+})
 </script>
 
 <template>
@@ -85,7 +93,10 @@ const taskStatus = computed(() => {
         </div>
         <div class="text-sm space-y-2 pt-4 border-t border-gray-200">
           <div class="flex justify-between items-center">
-            <p class="uppercase font-semibold text-gray-500">subtasks (1/3)</p>
+            <p class="uppercase font-semibold text-gray-500">
+              subtasks (<span>{{ totalCompletedSubtasks }}</span
+              >/ <span>{{ totalSubtasks }}</span> )
+            </p>
             <button
               class="bg-gray-100 text-gray-500 p-1 rounded-full border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
               @click.stop="modalStore.openModal('createSubtask', taskDrawerStore.activeTask)"
