@@ -14,11 +14,11 @@ const emit = defineEmits(['close'])
     <Transition name="backdrop">
       <div
         v-if="isOpen"
-        class="absolute w-full h-full z-50 bg-black/20 backdrop-blur-xs top-0 right-0 flex justify-center items-center"
+        class="fixed w-full h-full z-50 bg-black/20 backdrop-blur-xs top-0 right-0 flex justify-center items-center p-4"
         @click.self="emit('close')"
       >
         <Transition name="modal-content" appear>
-          <div class="max-w-md w-full bg-white p-4 rounded-xl">
+          <div class="max-w-md w-full max-h-[90vh] overflow-y-auto bg-white p-4 rounded-xl">
             <div class="flex justify-between items-center pb-2 border-b border-b-gray-200">
               <p class="font-semibold">{{ title }}</p>
               <button

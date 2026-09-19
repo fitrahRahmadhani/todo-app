@@ -33,7 +33,7 @@ function handleAddNewTask() {
 <template>
   <DefaultLayout>
     <div class="flex h-full min-h-0 overflow-y-auto">
-      <div class="flex-1 py-8 pr-8">
+      <div class="flex-1 py-8 pr-4 md:pr-8">
         <div class="space-y-2 mb-8">
           <div>
             <h6 class="font-semibold text-2xl">Today's Focus</h6>
@@ -43,7 +43,7 @@ function handleAddNewTask() {
           </div>
 
           <div
-            class="flex items-center gap-3 bg-white p-2 pl-6 mt-4 rounded-xl border border-gray-200 shadow-sm transition-shadow focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100"
+            class="flex flex-col md:flex-row md:items-center gap-3 bg-white p-2 pl-6 mt-4 rounded-xl border border-gray-200 shadow-sm transition-shadow focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100"
           >
             <label for="addToDo" class="flex-1">
               <span class="sr-only">Tambah tugas baru</span>
@@ -52,12 +52,12 @@ function handleAddNewTask() {
                 name="addToDo"
                 id="addToDo"
                 v-model="newTaskTitle"
-                class="w-full outline-none text-sm text-gray-700 placeholder:text-gray-400 active:bg-none"
+                class="w-full outline-none text-sm py-2 md:py-0 text-gray-700 placeholder:text-gray-400 active:bg-none"
                 placeholder="Add a new task... Press Enter to create"
               />
             </label>
 
-            <div class="flex items-center gap-2 shrink-0">
+            <div class="flex justify-end items-center gap-2 shrink-0">
               <PriorityDropdown v-model="newTaskPriority" />
               <VueDatePicker v-model="newTaskDate" :time-config="{ timePickerInline: true }">
                 <template #trigger>
