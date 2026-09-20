@@ -8,19 +8,19 @@ export const useTaskStore = defineStore('task', () => {
   const tasks = ref(taskService.getAll())
 
   const tasksToday = computed(() => {
-    return tasks.value.filter((t) => isToday(t.createdAt))
+    return tasks.value.filter((t) => isToday(t.dueDate))
   })
 
   const tasksUpcoming = computed(() => {
-    return tasks.value.filter((t) => isUpcoming(t.createdAt))
+    return tasks.value.filter((t) => isUpcoming(t.dueDate))
   })
 
   const totalTaskToday = computed(() => {
-    return tasks.value.filter((t) => isToday(t.createdAt)).length
+    return tasks.value.filter((t) => isToday(t.dueDate)).length
   })
 
   const totalCompletedTaskToday = computed(() => {
-    return tasks.value.filter((t) => t.completed && isToday(t.createdAt)).length
+    return tasks.value.filter((t) => t.completed && isToday(t.dueDate)).length
   })
 
   const audio = new Audio('/sounds/success-confirmation.mp3')
