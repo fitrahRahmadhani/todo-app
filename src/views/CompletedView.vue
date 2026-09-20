@@ -7,7 +7,7 @@ const taskStore = useTaskStore()
 </script>
 
 <template>
-  <DefaultLayout titlePage="Completed Task">
+  <DefaultLayout titlePage="Completed Tasks" subtitlePage="	Look back at everything you've finished">
     <TaskLists :tasks="taskStore.tasksCompleted" />
   </DefaultLayout>
 </template>

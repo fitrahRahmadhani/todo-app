@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import {
   CalendarClock,
   CircleCheckBig,
@@ -10,10 +10,25 @@ import {
 } from '@lucide/vue'
 import BaseNavLink from '../ui/BaseNavLink.vue'
 import { useSidebarStore } from '@/stores/sidebarStore'
+import { useTaskStore } from '@/stores/taskStore.js'
+import { computed } from 'vue'
 
 defineOptions({ inheritAttrs: false })
 
 const sidebarStore = useSidebarStore()
+const taskStore = useTaskStore()
+
+const totalTaskPendingToday = computed(() => {
+  return taskStore.tasksToday.filter((t) => !t.completed).length
+})
+
+const totalTaskPending = computed(() => {
+  return taskStore.tasks.filter((t) => !t.completed).length
+})
+
+const totalTaskPendingUpcoming = computed(() => {
+  return taskStore.tasksUpcoming.filter((t) => !t.completed).length
+})
 
 function handleNavClick() {
   sidebarStore.close()
@@ -61,19 +76,31 @@ function handleNavClick() {
       >
         workspace
       </p>
-      <BaseNavLink :to="{ name: 'today' }" :is-minimize="sidebarStore.isMinimize">
+      <BaseNavLink
+        :to="{ name: 'today' }"
+        :is-minimize="sidebarStore.isMinimize"
+        :pending="totalTaskPendingToday"
+      >
         <template v-slot:icon>
           <Sun :size="18" />
         </template>
         <span v-if="!sidebarStore.isMinimize">Today</span>
       </BaseNavLink>
-      <BaseNavLink :to="{ name: 'all-tasks' }" :is-minimize="sidebarStore.isMinimize">
+      <BaseNavLink
+        :to="{ name: 'all-tasks' }"
+        :is-minimize="sidebarStore.isMinimize"
+        :pending="totalTaskPending"
+      >
         <template v-slot:icon>
           <Inbox :size="18" />
         </template>
         <span v-if="!sidebarStore.isMinimize">All Tasks</span>
       </BaseNavLink>
-      <BaseNavLink :to="{ name: 'upcoming' }" :is-minimize="sidebarStore.isMinimize">
+      <BaseNavLink
+        :to="{ name: 'upcoming' }"
+        :is-minimize="sidebarStore.isMinimize"
+        :pending="totalTaskPendingUpcoming"
+      >
         <template v-slot:icon>
           <CalendarClock :size="18" />
         </template>

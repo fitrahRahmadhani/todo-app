@@ -7,7 +7,7 @@ const taskStore = useTaskStore()
 </script>
 
 <template>
-  <DefaultLayout titlePage="Upcoming Task">
+  <DefaultLayout titlePage="Upcoming Tasks" subtitlePage="Get ahead of what's coming next">
     <TaskLists :tasks="taskStore.tasksUpcoming" />
   </DefaultLayout>
 </template>
