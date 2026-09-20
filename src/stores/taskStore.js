@@ -7,16 +7,8 @@ import { toast } from 'vue-sonner'
 export const useTaskStore = defineStore('task', () => {
   const tasks = ref(taskService.getAll())
 
-  const pendingTaskToday = computed(() => {
-    return tasks.value
-      .filter((t) => !t.completed && isToday(t.createdAt))
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-  })
-
-  const completedTaskToday = computed(() => {
-    return tasks.value
-      .filter((t) => t.completed && isToday(t.createdAt))
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  const tasksToday = computed(() => {
+    return tasks.value.filter((t) => isToday(t.createdAt))
   })
 
   const totalTaskToday = computed(() => {
@@ -111,8 +103,7 @@ export const useTaskStore = defineStore('task', () => {
 
   return {
     tasks,
-    pendingTaskToday,
-    completedTaskToday,
+    tasksToday,
     totalTaskToday,
     totalCompletedTaskToday,
     toggleTask,
