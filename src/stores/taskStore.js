@@ -1,5 +1,5 @@
 import { taskService } from '@/services/taskService'
-import { isToday } from '@/utils/formatDate'
+import { isToday, isUpcoming } from '@/utils/formatDate'
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
 import { toast } from 'vue-sonner'
@@ -9,6 +9,10 @@ export const useTaskStore = defineStore('task', () => {
 
   const tasksToday = computed(() => {
     return tasks.value.filter((t) => isToday(t.createdAt))
+  })
+
+  const tasksUpcoming = computed(() => {
+    return tasks.value.filter((t) => isUpcoming(t.createdAt))
   })
 
   const totalTaskToday = computed(() => {
@@ -104,6 +108,7 @@ export const useTaskStore = defineStore('task', () => {
   return {
     tasks,
     tasksToday,
+    tasksUpcoming,
     totalTaskToday,
     totalCompletedTaskToday,
     toggleTask,
