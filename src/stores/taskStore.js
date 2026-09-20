@@ -15,6 +15,10 @@ export const useTaskStore = defineStore('task', () => {
     return tasks.value.filter((t) => isUpcoming(t.dueDate))
   })
 
+  const tasksCompleted = computed(() => {
+    return tasks.value.filter((t) => t.completed)
+  })
+
   const totalTaskToday = computed(() => {
     return tasks.value.filter((t) => isToday(t.dueDate)).length
   })
@@ -109,6 +113,7 @@ export const useTaskStore = defineStore('task', () => {
     tasks,
     tasksToday,
     tasksUpcoming,
+    tasksCompleted,
     totalTaskToday,
     totalCompletedTaskToday,
     toggleTask,

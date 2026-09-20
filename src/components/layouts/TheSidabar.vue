@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { CalendarClock, Inbox, PanelRightClose, PanelRightOpen, Sun, X } from '@lucide/vue'
+import {
+  CalendarClock,
+  CircleCheckBig,
+  Inbox,
+  PanelRightClose,
+  PanelRightOpen,
+  Sun,
+  X,
+} from '@lucide/vue'
 import BaseNavLink from '../ui/BaseNavLink.vue'
 import { ref } from 'vue'
 import { useSidebarStore } from '@/stores/sidebarStore'
@@ -70,6 +78,12 @@ function handleNavClick() {
       <BaseNavLink :to="{ name: 'upcoming' }" :is-minimize="isMinimize">
         <template v-slot:icon>
           <CalendarClock :size="18" />
+        </template>
+        <span v-if="!isMinimize">Upcoming</span>
+      </BaseNavLink>
+      <BaseNavLink :to="{ name: 'completed' }" :is-minimize="isMinimize">
+        <template v-slot:icon>
+          <CircleCheckBig :size="18" />
         </template>
         <span v-if="!isMinimize">Upcoming</span>
       </BaseNavLink>
