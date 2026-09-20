@@ -67,3 +67,16 @@ export function isToday(dateInput) {
     date.getDate() === today.getDate()
   )
 }
+
+export function isUpcoming(dateInput) {
+  if (!dateInput) return false
+
+  const date = new Date(dateInput)
+  if (isNaN(date.getTime())) return false
+
+  const startOfTomorrow = new Date()
+  startOfTomorrow.setHours(0, 0, 0, 0)
+  startOfTomorrow.setDate(startOfTomorrow.getDate() + 1)
+
+  return date.getTime() >= startOfTomorrow.getTime()
+}

@@ -1,5 +1,6 @@
 import AllTasksView from '@/views/AllTasksView.vue'
 import TodayView from '@/views/TodayView.vue'
+import UpcomingView from '@/views/UpcomingView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/all-tasks',
       name: 'all-tasks',
       component: AllTasksView,
+    },
+    {
+      path: '/upcoming',
+      name: 'upcoming',
+      component: UpcomingView,
     },
   ],
 })
