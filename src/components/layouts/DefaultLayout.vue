@@ -18,6 +18,7 @@ import { ref } from 'vue'
 const taskStore = useTaskStore()
 const props = defineProps({
   titlePage: { type: String },
+  subtitlePage: { type: String },
 })
 const newTaskTitle = ref()
 const newTaskDate = ref()
@@ -52,9 +53,9 @@ function handleAddNewTask() {
             <div class="space-y-2 mb-8">
               <div>
                 <h6 class="font-semibold text-2xl">
-                  <span>{{ titlePage }}</span> 's Focus
+                  <span>{{ titlePage }}</span>
                 </h6>
-                <p class="text-sm text-gray-500">Plan your day, accomplish your priorities.</p>
+                <p class="text-sm text-gray-500">{{ subtitlePage }}</p>
               </div>
 
               <div

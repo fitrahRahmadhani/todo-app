@@ -7,7 +7,7 @@ const taskStore = useTaskStore()
 </script>
 
 <template>
-  <DefaultLayout titlePage="Today">
+  <DefaultLayout titlePage="Today's Focus" subtitlePage="Plan your day, accomplish your priorities">
     <TaskLists :tasks="taskStore.tasksToday" />
   </DefaultLayout>
 </template>

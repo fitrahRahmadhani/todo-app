@@ -1,7 +1,7 @@
 <template>
   <router-link
     :to="to"
-    class="flex justify-between items-center px-4 py-2 rounded-lg text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+    class="relative flex justify-between items-center px-4 py-2 rounded-lg text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
     active-class="bg-blue-50 !text-blue-800 hover:!bg-blue-50 hover:!text-blue-600"
   >
     <div class="flex items-center gap-2">
@@ -14,9 +14,9 @@
     </div>
     <div
       class="flex justify-center items-center rounded-md bg-gray-50 w-5 h-5 text-xs"
-      v-if="!isMinimize"
+      v-if="!isMinimize && pending"
     >
-      <p>2</p>
+      <p>{{ pending }}</p>
     </div>
   </router-link>
 </template>
@@ -30,6 +30,9 @@ defineProps({
   isMinimize: {
     type: Boolean,
     required: true,
+  },
+  pending: {
+    type: Number,
   },
 })
 </script>
