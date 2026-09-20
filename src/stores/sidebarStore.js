@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 export const useSidebarStore = defineStore('sidebar', () => {
   const isOpen = ref(false)
+  const isMinimize = ref(false)
 
   function toggle() {
     isOpen.value = !isOpen.value
@@ -16,5 +17,5 @@ export const useSidebarStore = defineStore('sidebar', () => {
     isOpen.value = false
   }
 
-  return { isOpen, toggle, open, close }
+  return { isOpen, isMinimize, toggle, open, close }
 })
