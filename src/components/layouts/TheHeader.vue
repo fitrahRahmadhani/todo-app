@@ -2,15 +2,36 @@
 import { useTaskStore } from '@/stores/taskStore.js'
 import { useSidebarStore } from '@/stores/sidebarStore'
 import BaseLogo from '../ui/BaseLogo.vue'
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { Menu } from '@lucide/vue'
+import { useRoute, useRouter } from 'vue-router'
 
+const route = useRoute()
+const router = useRouter()
 const taskStore = useTaskStore()
 const sidebarStore = useSidebarStore()
+
+const searchQuery = ref()
+
 const progressPercentage = computed(() => {
   if (!taskStore.totalTaskToday) return 0
   return (taskStore.totalCompletedTaskToday / taskStore.totalTaskToday) * 100
 })
+
+function handleSearch() {
+  const query = searchQuery.value.trim()
+  if (!query) return
+
+  router.push({ name: 'all-tasks', query: { q: query } })
+}
+
+watch(
+  () => route.query.q,
+  (q) => {
+    searchQuery.value = q ? String(q) : ''
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -53,8 +74,10 @@ const progressPercentage = computed(() => {
         type="text"
         name="searchToDo"
         id="searchToDo"
+        @keyup.enter="handleSearch"
+        v-model="searchQuery"
         class="w-full text-gray-800 text-sm outline-none"
-        placeholder="Search your workspace... (⌘K)"
+        placeholder="Search your workspace..."
       />
     </label>
 
