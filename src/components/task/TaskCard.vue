@@ -1,16 +1,23 @@
 <script setup>
 import BaseBadge from '@/components/ui/BaseBadge.vue'
 import { useModalStore } from '@/stores/modalStore'
+import { useProjectStore } from '@/stores/projectStore'
 import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
 import { useTaskStore } from '@/stores/taskStore'
 import { formatTaskDate } from '@/utils/formatDate'
 import { Calendar, Pen, Trash } from '@lucide/vue'
+import { computed } from 'vue'
 
 const modalStore = useModalStore()
 const taskDrawerStore = useTaskDrawerStore()
+const projectStore = useProjectStore()
 const taskStore = useTaskStore()
 const props = defineProps({
   task: { type: Object, required: true },
+})
+
+const projectName = computed(() => {
+  return projectStore.getProjectById(props.task.project)?.name ?? '-'
 })
 </script>
 
@@ -43,7 +50,7 @@ const props = defineProps({
           <Calendar :size="12" class="shrink-0" />
           <p>{{ formatTaskDate(task.dueDate) }}</p>
           <span class="mx-1 hidden sm:inline">•</span>
-          <p class="text-gray-400">{{ task.project }}</p>
+          <p class="text-gray-400">{{ projectName }}</p>
         </div>
       </div>
     </div>

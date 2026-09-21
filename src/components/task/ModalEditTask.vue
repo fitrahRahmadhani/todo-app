@@ -6,9 +6,11 @@ import { Calendar, ChevronDown, Clock } from '@lucide/vue'
 import { formatDate, formatTimeObject } from '@/utils/formatDate'
 import { useTaskStore } from '@/stores/taskStore.js'
 import { useModalStore } from '@/stores/modalStore.js'
+import { useProjectStore } from '@/stores/projectStore.js'
 
 const taskStore = useTaskStore()
 const modalStore = useModalStore()
+const projectStore = useProjectStore()
 const title = ref()
 const description = ref()
 const date = ref()
@@ -93,7 +95,7 @@ function handleSave() {
         ></textarea>
       </label>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <label for="" class="flex flex-col gap-2">
+        <label class="flex flex-col gap-2">
           <p class="font-semibold text-sm">Due date</p>
           <VueDatePicker v-model="date" :time-config="{ enableTimePicker: false }">
             <template #trigger>
@@ -106,7 +108,7 @@ function handleSave() {
             </template>
           </VueDatePicker>
         </label>
-        <label for="" class="flex flex-col gap-2">
+        <label class="flex flex-col gap-2">
           <p class="font-semibold text-sm">Time</p>
           <VueDatePicker v-model="time" time-picker>
             <template #trigger>
@@ -121,12 +123,26 @@ function handleSave() {
         </label>
         <label for="project" class="flex flex-col gap-2">
           <p class="font-semibold text-sm">Project</p>
-          <input
-            id="project"
-            type="text"
-            class="p-2 rounded-lg border border-gray-200 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none"
-            v-model="project"
-          />
+          <div class="relative">
+            <select
+              name="project"
+              id="project"
+              v-model="project"
+              class="w-full appearance-none p-2 pr-9 rounded-lg border border-gray-200 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+            >
+              <option
+                v-for="project in projectStore.projects"
+                :key="project.id"
+                :value="project.id"
+              >
+                {{ project.name }}
+              </option>
+            </select>
+            <ChevronDown
+              :size="16"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+            />
+          </div>
         </label>
         <label for="priority" class="flex flex-col gap-2">
           <p class="font-semibold text-sm">Priority</p>
