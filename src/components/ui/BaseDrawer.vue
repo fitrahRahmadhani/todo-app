@@ -1,5 +1,6 @@
 <script setup>
 import { useModalStore } from '@/stores/modalStore'
+import { useProjectStore } from '@/stores/projectStore'
 import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
 import { useTaskStore } from '@/stores/taskStore'
 import { formatTaskDate } from '@/utils/formatDate'
@@ -9,6 +10,7 @@ import { computed } from 'vue'
 const taskDrawerStore = useTaskDrawerStore()
 const taskStore = useTaskStore()
 const modalStore = useModalStore()
+const projectStore = useProjectStore()
 
 const taskStatus = computed(() => {
   return taskDrawerStore.activeTask?.completed ? 'completed' : 'active task'
@@ -20,6 +22,10 @@ const totalSubtasks = computed(() => {
 
 const totalCompletedSubtasks = computed(() => {
   return taskDrawerStore.activeTask?.subtasks.filter((s) => s.completed).length ?? '-'
+})
+
+const projectName = computed(() => {
+  return projectStore.getProjectById(taskDrawerStore.activeTask?.project)?.name ?? '-'
 })
 </script>
 
@@ -87,9 +93,9 @@ const totalCompletedSubtasks = computed(() => {
         <p class="text-right capitalize">{{ taskDrawerStore.activeTask?.priority }}</p>
         <div class="flex items-center gap-2">
           <Folder :size="16" />
-          <p>List Project</p>
+          <p>Project</p>
         </div>
-        <p class="text-right">{{ taskDrawerStore.activeTask?.project }}</p>
+        <p class="text-right">{{ projectName }}</p>
       </div>
       <div class="space-y-4">
         <div class="text-sm space-y-2 pt-4 border-t border-gray-200">
