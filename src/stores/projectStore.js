@@ -9,8 +9,13 @@ export const useProjectStore = defineStore('project', () => {
     return projects.value.find((p) => p.id === projectId)
   }
 
+  function getProjectName(projectId) {
+    return projects.value.find((p) => p.id === projectId).name ?? '-'
+  }
+
   return {
     projects,
     getProjectById,
+    getProjectName,
   }
 })

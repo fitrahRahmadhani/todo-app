@@ -109,6 +109,10 @@ export const useTaskStore = defineStore('task', () => {
     toast.success('Subtask deleted successfully')
   }
 
+  function getTasksByProjectId(projectId) {
+    return tasks.value.filter((t) => t.project === projectId)
+  }
+
   return {
     tasks,
     tasksToday,
@@ -123,5 +127,6 @@ export const useTaskStore = defineStore('task', () => {
     destroyTask,
     addSubtask,
     destroySubtask,
+    getTasksByProjectId,
   }
 })
