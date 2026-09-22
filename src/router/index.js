@@ -1,5 +1,6 @@
 import AllTasksView from '@/views/AllTasksView.vue'
 import CompletedView from '@/views/CompletedView.vue'
+import ProjectsView from '@/views/ProjectsView.vue'
 import TodayView from '@/views/TodayView.vue'
 import UpcomingView from '@/views/UpcomingView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -26,6 +27,12 @@ const router = createRouter({
       path: '/completed',
       name: 'completed',
       component: CompletedView,
+    },
+    {
+      path: '/project/:projectId',
+      name: 'project',
+      component: ProjectsView,
+      props: true,
     },
   ],
 })

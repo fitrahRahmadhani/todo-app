@@ -2,6 +2,7 @@
 import {
   CalendarClock,
   CircleCheckBig,
+  Folder,
   Inbox,
   PanelRightClose,
   PanelRightOpen,
@@ -12,11 +13,13 @@ import BaseNavLink from '../ui/BaseNavLink.vue'
 import { useSidebarStore } from '@/stores/sidebarStore'
 import { useTaskStore } from '@/stores/taskStore.js'
 import { computed } from 'vue'
+import { useProjectStore } from '@/stores/projectStore.js'
 
 defineOptions({ inheritAttrs: false })
 
 const sidebarStore = useSidebarStore()
 const taskStore = useTaskStore()
+const projectStore = useProjectStore()
 
 const totalTaskPendingToday = computed(() => {
   return taskStore.tasksToday.filter((t) => !t.completed).length
@@ -111,6 +114,23 @@ function handleNavClick() {
           <CircleCheckBig :size="18" />
         </template>
         <span v-if="!sidebarStore.isMinimize">Completed</span>
+      </BaseNavLink>
+      <p
+        class="uppercase text-xs text-gray-400 font-semibold mt-6 mb-2"
+        :class="sidebarStore.isMinimize ? 'invisible' : 'visible'"
+      >
+        projects
+      </p>
+      <BaseNavLink
+        v-for="project in projectStore.projects"
+        :key="project.id"
+        :to="{ name: 'project', params: { projectId: project.id } }"
+        :is-minimize="sidebarStore.isMinimize"
+      >
+        <template v-slot:icon>
+          <Folder :size="18" :style="{ color: project.color }" />
+        </template>
+        <span v-if="!sidebarStore.isMinimize">{{ projectStore.getProjectName(project.id) }}</span>
       </BaseNavLink>
     </nav>
   </aside>

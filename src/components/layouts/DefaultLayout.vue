@@ -1,6 +1,6 @@
 <script setup>
 import TheHeader from './TheHeader.vue'
-import TheSidabar from './TheSidabar.vue'
+import TheSidebar from './TheSidebar.vue'
 import BaseDrawer from '../ui/BaseDrawer.vue'
 import ModalConfirmDelete from '../task/ModalConfirmDelete.vue'
 import ModalEditTask from '../task/ModalEditTask.vue'
@@ -45,7 +45,7 @@ function handleAddNewTask() {
     <TheHeader class="shrink-0" />
 
     <div class="flex flex-1 min-h-0 relative">
-      <TheSidabar class="shrink-0" />
+      <TheSidebar class="shrink-0" />
 
       <main class="flex-1 px-4 md:pl-8 pr-0 min-h-0 overflow-x-hidden">
         <div class="flex h-full min-h-0 overflow-y-auto">
