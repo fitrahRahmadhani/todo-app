@@ -14,6 +14,7 @@ import { Calendar, Plus } from '@lucide/vue'
 import { VueDatePicker } from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import { ref } from 'vue'
+import ModalCreateProject from '../project/ModalCreateProject.vue'
 
 const taskStore = useTaskStore()
 const props = defineProps({
@@ -108,6 +109,7 @@ function handleAddNewTask() {
     <ModalConfirmDelete />
     <ModalEditTask />
     <ModalCreateSubTask />
+    <ModalCreateProject />
     <Toaster richColors position="top-center" />
   </div>
 </template>
