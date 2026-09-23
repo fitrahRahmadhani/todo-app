@@ -13,6 +13,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@cyhnkckali/vue3-color-picker": "^2.1.7",
     "@lucide/vue": "^1.41.0",
     "@tailwindcss/vite": "^4.3.3",
     "@vuepic/vue-datepicker": "^14.0.0",

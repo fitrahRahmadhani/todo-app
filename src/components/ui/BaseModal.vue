@@ -18,7 +18,7 @@ const emit = defineEmits(['close'])
         @click.self="emit('close')"
       >
         <Transition name="modal-content" appear>
-          <div class="max-w-md w-full max-h-[90vh] overflow-y-auto bg-white p-4 rounded-xl">
+          <div class="max-w-md relative w-full max-h-[90vh] bg-white p-4 rounded-xl">
             <div class="flex justify-between items-center pb-2 border-b border-b-gray-200">
               <p class="font-semibold">{{ title }}</p>
               <button

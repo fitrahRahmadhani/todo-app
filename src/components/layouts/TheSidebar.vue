@@ -6,6 +6,7 @@ import {
   Inbox,
   PanelRightClose,
   PanelRightOpen,
+  Plus,
   Sun,
   X,
 } from '@lucide/vue'
@@ -14,12 +15,14 @@ import { useSidebarStore } from '@/stores/sidebarStore'
 import { useTaskStore } from '@/stores/taskStore.js'
 import { computed } from 'vue'
 import { useProjectStore } from '@/stores/projectStore.js'
+import { useModalStore } from '@/stores/modalStore.js'
 
 defineOptions({ inheritAttrs: false })
 
 const sidebarStore = useSidebarStore()
 const taskStore = useTaskStore()
 const projectStore = useProjectStore()
+const modalStore = useModalStore()
 
 const totalTaskPendingToday = computed(() => {
   return taskStore.tasksToday.filter((t) => !t.completed).length
@@ -132,6 +135,13 @@ function handleNavClick() {
         </template>
         <span v-if="!sidebarStore.isMinimize">{{ projectStore.getProjectName(project.id) }}</span>
       </BaseNavLink>
+      <button
+        type="button"
+        class="w-full flex items-center justify-center p-2 border border-dashed border-gray-400 text-gray-400 rounded-lg mt-2 hover:bg-gray-50 hover:border-gray-500 hover:border-solid hover:text-gray-600 transition duration-300 ease-in-out"
+        @click.stop="modalStore.openModal('createProject')"
+      >
+        <Plus :size="18" />
+      </button>
     </nav>
   </aside>
 </template>
