@@ -27,7 +27,7 @@ const pageSubtitle = computed(() =>
 </script>
 
 <template>
-  <DefaultLayout :title-page="`${pageTitle} Tasks`" :subtitle-page="pageSubtitle">
+  <DefaultLayout :title-page="pageTitle" :subtitle-page="pageSubtitle">
     <TaskLists :tasks="tasks" />
   </DefaultLayout>
 </template>
