@@ -36,6 +36,10 @@ const totalTaskPendingUpcoming = computed(() => {
   return taskStore.tasksUpcoming.filter((t) => !t.completed).length
 })
 
+const projectList = computed(() => {
+  return projectStore.projects
+})
+
 function handleNavClick() {
   sidebarStore.close()
 }
@@ -125,7 +129,7 @@ function handleNavClick() {
         projects
       </p>
       <BaseNavLink
-        v-for="project in projectStore.projects"
+        v-for="project in projectList"
         :key="project.id"
         :to="{ name: 'project', params: { projectId: project.id } }"
         :is-minimize="sidebarStore.isMinimize"

@@ -10,7 +10,7 @@ import '@cyhnkckali/vue3-color-picker/dist/style.css'
 const modalStore = useModalStore()
 const projectStore = useProjectStore()
 
-const name = ref('')
+const title = ref('')
 const color = ref('#3b82f6')
 const isPickerOpen = ref(false)
 const pickerRef = ref(null)
@@ -19,7 +19,7 @@ watch(
   () => modalStore.isModalOpen('createProject'),
   (isOpen) => {
     if (isOpen) {
-      name.value = ''
+      title.value = ''
       color.value = '#3b82f6'
       isPickerOpen.value = false
     }
@@ -27,10 +27,10 @@ watch(
 )
 
 function handleSave() {
-  const trimmed = name.value.trim()
+  const trimmed = title.value.trim()
   if (!trimmed) return
 
-  projectStore.addProject({ name: trimmed, color: color.value })
+  projectStore.addProject({ title: trimmed, color: color.value })
   modalStore.closeModal()
 }
 
