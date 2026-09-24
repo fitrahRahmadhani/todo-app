@@ -46,7 +46,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
 
 <template>
   <BaseModal
-    name="Create Project"
+    title="Create Project"
     :is-open="modalStore.isModalOpen('createProject')"
     @close="modalStore.closeModal()"
   >

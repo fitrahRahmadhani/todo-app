@@ -15,6 +15,7 @@ import { VueDatePicker } from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import { ref } from 'vue'
 import ModalCreateProject from '../project/ModalCreateProject.vue'
+import ProjectDropdown from '../ui/ProjectDropdown.vue'
 
 const taskStore = useTaskStore()
 const props = defineProps({
@@ -24,6 +25,7 @@ const props = defineProps({
 const newTaskTitle = ref()
 const newTaskDate = ref()
 const newTaskPriority = ref()
+const newTaskProject = ref()
 
 function handleAddNewTask() {
   const title = newTaskTitle.value.trim()
@@ -33,11 +35,13 @@ function handleAddNewTask() {
     title,
     dueDate: newTaskDate.value,
     priority: newTaskPriority.value,
+    project: newTaskProject.value,
   })
 
   newTaskTitle.value = ''
   newTaskDate.value = ''
   newTaskPriority.value = ''
+  newTaskProject.value = ''
 }
 </script>
 
@@ -75,6 +79,7 @@ function handleAddNewTask() {
                 </label>
 
                 <div class="flex justify-end items-center gap-2 shrink-0">
+                  <ProjectDropdown v-model="newTaskProject" />
                   <PriorityDropdown v-model="newTaskPriority" />
                   <VueDatePicker v-model="newTaskDate" :time-config="{ timePickerInline: true }">
                     <template #trigger>

@@ -17,7 +17,7 @@ const props = defineProps({
 })
 
 const projectName = computed(() => {
-  return projectStore.getProjectById(props.task.project)?.name ?? '-'
+  return projectStore.getProjectById(props.task.project)?.title ?? '-'
 })
 </script>
 
