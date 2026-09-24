@@ -1,11 +1,20 @@
+import router from '@/router'
 import { projectService } from '@/services/projectService'
 import { generateSlug } from '@/utils/formatText'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { toast } from 'vue-sonner'
 
 export const useProjectStore = defineStore('project', () => {
   const projects = ref(projectService.getAll())
+
+  watch(
+    projects,
+    (newProjects) => {
+      projectService.saveAll(newProjects)
+    },
+    { deep: true },
+  )
 
   function getProjectById(projectId) {
     return projects.value.find((p) => p.id === projectId)
@@ -31,6 +40,7 @@ export const useProjectStore = defineStore('project', () => {
 
     projects.value.splice(projectIndex, 1)
     toast.success('Project deleted successfully')
+    router.push({ name: 'today' })
   }
 
   return {

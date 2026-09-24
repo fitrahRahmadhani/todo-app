@@ -135,7 +135,7 @@ function handleSave() {
                 :key="project.id"
                 :value="project.id"
               >
-                {{ project.name }}
+                {{ project.title }}
               </option>
             </select>
             <ChevronDown
