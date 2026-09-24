@@ -20,7 +20,7 @@ const tasks = computed(() => {
 })
 const project = computed(() => projectStore.getProjectById(props.projectId))
 
-const pageTitle = computed(() => project.value?.name ?? 'Project not found')
+const pageTitle = computed(() => project.value?.title ?? 'Project not found')
 const pageSubtitle = computed(() =>
   project.value ? `${tasks.value.length} task in this project.` : '',
 )

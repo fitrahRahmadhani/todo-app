@@ -7,7 +7,7 @@ const DEFAULT_TASKS = [
     completed: false,
     priority: 'high',
     dueDate: new Date().toISOString(),
-    project: 'project-marketing',
+    project: 'marketing',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur beatae earum exercitationem natus in repellat velit reprehenderit reiciendis dolore nostrum?',
     createdAt: new Date().toISOString(),
@@ -36,7 +36,7 @@ const DEFAULT_TASKS = [
     completed: false,
     priority: 'medium',
     dueDate: new Date().toISOString(),
-    project: 'project-marketing',
+    project: 'marketing',
     description: 'Siapkan agenda dan catatan progres untuk sync mingguan tim.',
     createdAt: new Date().toISOString(),
     subtasks: [
@@ -59,7 +59,7 @@ const DEFAULT_TASKS = [
     completed: false,
     priority: 'high',
     dueDate: new Date().toISOString(),
-    project: 'project-desain',
+    project: 'desain',
     description:
       'Tombol checkout tertutup keyboard di beberapa device Android saat form alamat dibuka.',
     createdAt: new Date().toISOString(),
@@ -93,7 +93,7 @@ const DEFAULT_TASKS = [
     completed: false,
     priority: 'low',
     dueDate: new Date().toISOString(),
-    project: 'project-finance',
+    project: 'finance',
     description: 'Siapkan dokumen onboarding dan akses tools untuk karyawan baru minggu depan.',
     createdAt: new Date().toISOString(),
     subtasks: [
@@ -116,7 +116,7 @@ const DEFAULT_TASKS = [
     completed: true,
     priority: 'medium',
     dueDate: new Date().toISOString(),
-    project: 'project-finance',
+    project: 'finance',
     description: 'Rekap dan finalisasi laporan budget bulanan sebelum dikirim ke manajemen.',
     createdAt: new Date().toISOString(),
     subtasks: [
