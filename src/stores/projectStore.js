@@ -12,17 +12,25 @@ export const useProjectStore = defineStore('project', () => {
   }
 
   function getProjectName(projectId) {
-    return projects.value.find((p) => p.id === projectId).name ?? '-'
+    return projects.value.find((p) => p.id === projectId).title ?? '-'
   }
 
-  function addProject({ name, color }) {
+  function addProject({ title, color }) {
     const newProject = {
-      id: generateSlug(name),
-      name: name,
+      id: generateSlug(title),
+      title: title,
       color: color,
     }
     projects.value.push(newProject)
     toast.success('Project created successfully')
+  }
+
+  function destroyProject(projectId) {
+    const projectIndex = projects.value.findIndex((p) => p.id === projectId)
+    if (projectIndex === -1) return
+
+    projects.value.splice(projectIndex, 1)
+    toast.success('Project deleted successfully')
   }
 
   return {
@@ -30,5 +38,6 @@ export const useProjectStore = defineStore('project', () => {
     getProjectById,
     getProjectName,
     addProject,
+    destroyProject,
   }
 })

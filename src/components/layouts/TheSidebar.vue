@@ -134,6 +134,14 @@ function handleNavClick() {
           <Folder :size="18" :style="{ color: project.color }" />
         </template>
         <span v-if="!sidebarStore.isMinimize">{{ projectStore.getProjectName(project.id) }}</span>
+        <template v-slot:action>
+          <button
+            class="text-gray-400 transition duration-300 cursor-pointer p-1 rounded-xl hover:text-red-500 hover:bg-red-50"
+            @click.prevent.stop="modalStore.openModal('confirmDelete', project, 'project')"
+          >
+            <X :size="12" />
+          </button>
+        </template>
       </BaseNavLink>
       <button
         type="button"

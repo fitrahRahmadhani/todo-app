@@ -2,12 +2,18 @@
 import { useTaskStore } from '@/stores/taskStore.js'
 import BaseModal from '../ui/BaseModal.vue'
 import { useModalStore } from '@/stores/modalStore.js'
+import { useProjectStore } from '@/stores/projectStore.js'
 
 const modalStore = useModalStore()
 const taskStore = useTaskStore()
+const projectStore = useProjectStore()
 
-function confirmDelete(taskId) {
-  taskStore.destroyTask(taskId)
+function confirmDelete(id) {
+  if (modalStore.target == 'task') {
+    taskStore.destroyTask(id)
+  } else {
+    projectStore.destroyProject(id)
+  }
   modalStore.closeModal()
 }
 </script>
