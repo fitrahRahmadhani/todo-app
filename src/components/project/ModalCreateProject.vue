@@ -51,13 +51,13 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
     @close="modalStore.closeModal()"
   >
     <div class="space-y-4">
-      <label for="name" class="flex flex-col gap-2">
-        <p class="font-semibold text-sm">Project name</p>
+      <label for="title" class="flex flex-col gap-2">
+        <p class="font-semibold text-sm">Project title</p>
         <input
-          id="name"
+          id="title"
           type="text"
           class="p-2 rounded-lg border border-gray-200 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none"
-          v-model="name"
+          v-model="title"
         />
       </label>
 
@@ -100,7 +100,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
         </button>
         <button
           class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-          :disabled="!name.trim()"
+          :disabled="!title.trim()"
           @click="handleSave()"
         >
           Create Project
