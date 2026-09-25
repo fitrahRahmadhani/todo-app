@@ -1,7 +1,7 @@
 <script setup>
 import { VueDatePicker } from '@vuepic/vue-datepicker'
 import BaseModal from '../ui/BaseModal.vue'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { Calendar, ChevronDown, Clock } from '@lucide/vue'
 import { formatDate, formatTimeObject } from '@/utils/formatDate'
 import { useTaskStore } from '@/stores/taskStore.js'
@@ -45,6 +45,8 @@ watch(
     project.value = task.project
   },
 )
+
+const isSaveDisabled = computed(() => !title.value?.trim())
 
 function handleSave() {
   if (!title.value?.trim()) return
@@ -172,8 +174,9 @@ function handleSave() {
           Cancel
         </button>
         <button
-          class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
+          class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-500"
           @click="handleSave"
+          :disabled="isSaveDisabled"
         >
           Save changes
         </button>
