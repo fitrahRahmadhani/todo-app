@@ -13,7 +13,7 @@ import { formatDateTime } from '@/utils/formatDate'
 import { Calendar, Plus } from '@lucide/vue'
 import { VueDatePicker } from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import ModalCreateProject from '../project/ModalCreateProject.vue'
 import ProjectDropdown from '../ui/ProjectDropdown.vue'
 
@@ -21,11 +21,19 @@ const taskStore = useTaskStore()
 const props = defineProps({
   titlePage: { type: String },
   subtitlePage: { type: String },
+  projectId: { type: String, required: false },
 })
 const newTaskTitle = ref()
 const newTaskDate = ref()
 const newTaskPriority = ref()
-const newTaskProject = ref()
+const newTaskProject = ref(props.projectId ?? '')
+
+watch(
+  () => props.projectId,
+  (newProjectId) => {
+    newTaskProject.value = newProjectId ?? ''
+  },
+)
 
 function handleAddNewTask() {
   const title = newTaskTitle.value.trim()
