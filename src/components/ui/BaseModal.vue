@@ -23,7 +23,7 @@ const emit = defineEmits(['close'])
               <p class="font-semibold">{{ title }}</p>
               <button
                 @click="emit('close')"
-                class="bg-gray-50 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
+                class="bg-gray-50 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-600 hover:border-gray-300"
               >
                 <X :size="18" />
               </button>
