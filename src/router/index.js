@@ -1,3 +1,5 @@
+import { useModalStore } from '@/stores/modalStore'
+import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
 import AllTasksView from '@/views/AllTasksView.vue'
 import CompletedView from '@/views/CompletedView.vue'
 import ProjectsView from '@/views/ProjectsView.vue'
@@ -35,6 +37,14 @@ const router = createRouter({
       props: true,
     },
   ],
+})
+
+router.afterEach(() => {
+  const taskDrawerStore = useTaskDrawerStore()
+  const modalStore = useModalStore()
+
+  taskDrawerStore.closeDrawer()
+  modalStore.closeModal()
 })
 
 export default router
