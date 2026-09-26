@@ -6,6 +6,7 @@ import { useTaskStore } from '@/stores/taskStore'
 import { formatTaskDate } from '@/utils/formatDate'
 import { Calendar, CirclePlus, Flag, FlagTriangleRight, Folder, Trash, X } from '@lucide/vue'
 import { computed } from 'vue'
+import BaseBadge from './BaseBadge.vue'
 
 const taskDrawerStore = useTaskDrawerStore()
 const taskStore = useTaskStore()
@@ -24,8 +25,8 @@ const totalCompletedSubtasks = computed(() => {
   return taskDrawerStore.activeTask?.subtasks.filter((s) => s.completed).length ?? '-'
 })
 
-const projectName = computed(() => {
-  return projectStore.getProjectById(taskDrawerStore.activeTask?.project)?.name ?? '-'
+const project = computed(() => {
+  return projectStore.getProjectById(taskDrawerStore.activeTask?.project) ?? '-'
 })
 </script>
 
@@ -57,7 +58,7 @@ const projectName = computed(() => {
         </div>
         <button
           @click="taskDrawerStore.closeDrawer"
-          class="bg-gray-50 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
+          class="bg-gray-50 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-600 hover:border-gray-300"
         >
           <X size="18" />
         </button>
@@ -90,12 +91,20 @@ const projectName = computed(() => {
           <FlagTriangleRight :size="16" />
           <p>Priority</p>
         </div>
-        <p class="text-right capitalize">{{ taskDrawerStore.activeTask?.priority }}</p>
+        <BaseBadge :status="taskDrawerStore.activeTask?.priority" :class="'w-fit place-self-end'" />
         <div class="flex items-center gap-2">
           <Folder :size="16" />
           <p>Project</p>
         </div>
-        <p class="text-right">{{ projectName }}</p>
+        <p
+          class="w-fit text-right py-1 px-2 rounded-lg place-self-end"
+          :style="{
+            color: project.color,
+            background: `color-mix(in srgb, ${project.color} 10%, transparent)`,
+          }"
+        >
+          {{ project.title }}
+        </p>
       </div>
       <div class="space-y-4">
         <div class="text-sm space-y-2 pt-4 border-t border-gray-200">
@@ -111,7 +120,7 @@ const projectName = computed(() => {
               >/ <span>{{ totalSubtasks }}</span> )
             </p>
             <button
-              class="bg-gray-100 text-gray-500 p-1 rounded-full border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-500 hover:border-gray-300"
+              class="bg-gray-50 text-gray-400 p-1 rounded-full border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-600 hover:border-gray-300"
               @click.stop="modalStore.openModal('createSubtask', taskDrawerStore.activeTask)"
             >
               <CirclePlus :size="14" />
