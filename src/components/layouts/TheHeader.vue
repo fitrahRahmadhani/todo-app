@@ -20,7 +20,7 @@ const progressPercentage = computed(() => {
 
 function handleSearch() {
   const query = searchQuery.value.trim()
-  if (!query) return
+  if (!query) return router.push({ name: 'all-tasks' })
 
   router.push({ name: 'all-tasks', query: { q: query } })
 }
