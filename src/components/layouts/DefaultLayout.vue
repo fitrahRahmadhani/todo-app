@@ -82,7 +82,7 @@ function handleAddNewTask() {
                     id="addToDo"
                     v-model="newTaskTitle"
                     class="w-full outline-none text-sm py-2 md:py-0 text-gray-700 placeholder:text-gray-400 active:bg-none"
-                    placeholder="Add a new task... Press Enter to create"
+                    placeholder="Add a new task..."
                   />
                 </label>
 
