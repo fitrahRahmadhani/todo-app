@@ -4,7 +4,7 @@ import { useModalStore } from '@/stores/modalStore'
 import { useProjectStore } from '@/stores/projectStore'
 import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
 import { useTaskStore } from '@/stores/taskStore'
-import { formatTaskDate } from '@/utils/formatDate'
+import { formatCompletedTaskDate, formatTaskDate } from '@/utils/formatDate'
 import { Calendar, Pen, Trash } from '@lucide/vue'
 import { computed } from 'vue'
 
@@ -43,12 +43,14 @@ const projectName = computed(() => {
         >
           {{ task.title }}
         </p>
-        <div
-          class="flex flex-wrap gap-1 items-center text-xs text-gray-500 mt-1"
-          v-if="!task.completed"
-        >
+        <div class="flex flex-wrap gap-1 items-center text-xs text-gray-500 mt-1">
           <Calendar :size="12" class="shrink-0" />
-          <p>{{ formatTaskDate(task.dueDate) }}</p>
+          <p>
+            <span v-if="!task.completed">{{ formatTaskDate(task.dueDate) }}</span>
+            <span v-if="task.completed"
+              >Completed at {{ formatCompletedTaskDate(task.completedAt) }}</span
+            >
+          </p>
           <span class="mx-1 hidden sm:inline">•</span>
           <p class="text-gray-400">{{ projectName }}</p>
         </div>

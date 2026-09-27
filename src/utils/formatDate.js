@@ -15,6 +15,22 @@ export function formatTaskDate(isoDate) {
   return `${dayName}, ${date.getDate()} ${monthShort} ${date.getFullYear()}, ${time}`
 }
 
+export function formatCompletedTaskDate(isoDate) {
+  if (!isoDate) return ''
+
+  const date = new Date(isoDate)
+  if (isNaN(date.getTime())) return ''
+
+  const monthShort = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
+  const time = new Intl.DateTimeFormat('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(date)
+
+  return `${date.getDate()} ${monthShort} ${date.getFullYear()}, ${time}`
+}
+
 export function formatDateTime(dateInput) {
   if (!dateInput) return ''
 
