@@ -11,6 +11,7 @@ const DEFAULT_TASKS = [
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur beatae earum exercitationem natus in repellat velit reprehenderit reiciendis dolore nostrum?',
     createdAt: new Date().toISOString(),
+    completedAt: '',
     subtasks: [
       {
         id: crypto.randomUUID(),
@@ -39,6 +40,7 @@ const DEFAULT_TASKS = [
     project: 'marketing',
     description: 'Siapkan agenda dan catatan progres untuk sync mingguan tim.',
     createdAt: new Date().toISOString(),
+    completedAt: '',
     subtasks: [
       {
         id: crypto.randomUUID(),
@@ -63,6 +65,7 @@ const DEFAULT_TASKS = [
     description:
       'Tombol checkout tertutup keyboard di beberapa device Android saat form alamat dibuka.',
     createdAt: new Date().toISOString(),
+    completedAt: '',
     subtasks: [
       {
         id: crypto.randomUUID(),
@@ -96,6 +99,7 @@ const DEFAULT_TASKS = [
     project: 'finance',
     description: 'Siapkan dokumen onboarding dan akses tools untuk karyawan baru minggu depan.',
     createdAt: new Date().toISOString(),
+    completedAt: '',
     subtasks: [
       {
         id: crypto.randomUUID(),
@@ -119,6 +123,7 @@ const DEFAULT_TASKS = [
     project: 'finance',
     description: 'Rekap dan finalisasi laporan budget bulanan sebelum dikirim ke manajemen.',
     createdAt: new Date().toISOString(),
+    completedAt: '',
     subtasks: [
       {
         id: crypto.randomUUID(),

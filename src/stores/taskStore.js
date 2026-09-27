@@ -42,6 +42,7 @@ export const useTaskStore = defineStore('task', () => {
     if (!task) return
 
     task.completed = !task.completed
+    task.completedAt = task.completed ? new Date().toISOString() : null
 
     if (task.completed) {
       audio.pause()
