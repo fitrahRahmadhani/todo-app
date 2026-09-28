@@ -3,7 +3,7 @@ import { useModalStore } from '@/stores/modalStore'
 import { useProjectStore } from '@/stores/projectStore'
 import { useTaskDrawerStore } from '@/stores/taskDrawerStore'
 import { useTaskStore } from '@/stores/taskStore'
-import { formatTaskDate } from '@/utils/formatDate'
+import { formatCompletedTaskDate, formatTaskDate } from '@/utils/formatDate'
 import { Calendar, CirclePlus, Flag, FlagTriangleRight, Folder, Trash, X } from '@lucide/vue'
 import { computed } from 'vue'
 import BaseBadge from './BaseBadge.vue'
@@ -15,6 +15,12 @@ const projectStore = useProjectStore()
 
 const taskStatus = computed(() => {
   return taskDrawerStore.activeTask?.completed ? 'completed' : 'active task'
+})
+
+const showCompletedDate = computed(() => {
+  return taskDrawerStore.activeTask?.completed
+    ? formatCompletedTaskDate(taskDrawerStore.activeTask?.completedAt)
+    : null
 })
 
 const totalSubtasks = computed(() => {
@@ -52,9 +58,12 @@ const project = computed(() => {
           :class="taskDrawerStore.activeTask?.completed ? 'text-gray-400' : 'text-blue-500'"
         >
           <Flag :size="18" />
-          <p class="uppercase text-sm font-semibold">
-            {{ taskStatus }}
-          </p>
+          <div class="flex flex-col">
+            <p class="uppercase text-sm font-semibold">
+              {{ taskStatus }}
+            </p>
+            <p v-if="showCompletedDate" class="text-xs italic">at {{ showCompletedDate }}</p>
+          </div>
         </div>
         <button
           @click="taskDrawerStore.closeDrawer"
@@ -116,8 +125,8 @@ const project = computed(() => {
         <div class="text-sm space-y-2 pt-4 border-t border-gray-200">
           <div class="flex justify-between items-center">
             <p class="uppercase font-semibold text-gray-500">
-              subtasks (<span>{{ totalCompletedSubtasks }}</span
-              >/ <span>{{ totalSubtasks }}</span> )
+              subtasks (<span>{{ totalCompletedSubtasks }}</span> / <span>{{ totalSubtasks }}</span
+              >)
             </p>
             <button
               class="bg-gray-50 text-gray-400 p-1 rounded-full border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-600 hover:border-gray-300"
