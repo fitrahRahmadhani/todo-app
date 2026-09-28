@@ -10,7 +10,8 @@
     "lint": "run-s \"lint:*\"",
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache",
-    "format": "prettier --write --experimental-cli src/"
+    "format": "prettier --write --experimental-cli src/",
+    "test": "vitest"
   },
   "dependencies": {
     "@cyhnkckali/vue3-color-picker": "^2.1.7",
@@ -39,6 +40,7 @@
     "tailwindcss": "^4.3.3",
     "vite": "^8.1.5",
     "vite-plugin-vue-devtools": "^8.1.5",
+    "vitest": "^5.0.2",
     "vue-eslint-parser": "^10.4.1"
   },
   "engines": {
