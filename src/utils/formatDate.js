@@ -1,8 +1,8 @@
 export function formatTaskDate(isoDate) {
-  if (!isoDate) return ''
+  if (!isoDate) return '-'
 
   const date = new Date(isoDate)
-  if (isNaN(date.getTime())) return ''
+  if (isNaN(date.getTime())) return '-'
 
   const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date)
   const monthShort = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
@@ -16,10 +16,10 @@ export function formatTaskDate(isoDate) {
 }
 
 export function formatCompletedTaskDate(isoDate) {
-  if (!isoDate) return ''
+  if (!isoDate) return '-'
 
   const date = new Date(isoDate)
-  if (isNaN(date.getTime())) return ''
+  if (isNaN(date.getTime())) return '-'
 
   const monthShort = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
   const time = new Intl.DateTimeFormat('en-US', {
@@ -32,10 +32,10 @@ export function formatCompletedTaskDate(isoDate) {
 }
 
 export function formatDateTime(dateInput) {
-  if (!dateInput) return ''
+  if (!dateInput) return '-'
 
   const date = new Date(dateInput)
-  if (isNaN(date.getTime())) return ''
+  if (isNaN(date.getTime())) return '-'
 
   return date.toLocaleString('en-US', {
     day: 'numeric',
@@ -47,10 +47,10 @@ export function formatDateTime(dateInput) {
 }
 
 export function formatDate(dateInput) {
-  if (!dateInput) return ''
+  if (!dateInput) return '-'
 
   const date = new Date(dateInput)
-  if (isNaN(date.getTime())) return ''
+  if (isNaN(date.getTime())) return '-'
 
   return date.toLocaleString('en-US', {
     day: 'numeric',
