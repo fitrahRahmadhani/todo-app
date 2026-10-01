@@ -1,12 +1,8 @@
 import BaseBadge from '@/components/ui/BaseBadge.vue'
-import { afterAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 
 describe('BaseBadge', () => {
-  afterAll(() => {
-    vi.restoreAllMocks()
-  })
-
   it('menampilkan value dari props', () => {
     const wrapper = mount(BaseBadge, { props: { status: 'high' } })
     expect(wrapper.text()).toBe('high')
