@@ -21,7 +21,7 @@ export const useProjectStore = defineStore('project', () => {
   }
 
   function getProjectName(projectId) {
-    return projects.value.find((p) => p.id === projectId).title ?? '-'
+    return projects.value.find((p) => p.id === projectId)?.title ?? '-'
   }
 
   function addProject({ title, color }) {
