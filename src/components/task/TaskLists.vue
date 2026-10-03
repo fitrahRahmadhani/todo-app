@@ -27,7 +27,9 @@ const isEmpty = computed(() => pendingTasks.value.length === 0 && completedTasks
       <p class="uppercase text-sm text-gray-500">completed task</p>
       <div class="flex-1 h-px bg-gray-200"></div>
     </div>
-    <TaskCard v-for="task in completedTasks" :key="task.id" :task="task" />
+    <div class="pb-12 space-y-4">
+      <TaskCard v-for="task in completedTasks" :key="task.id" :task="task" />
+    </div>
 
     <div v-if="isEmpty" class="flex flex-col items-center justify-center text-center py-16">
       <div class="flex items-center justify-center w-14 h-14 rounded-full bg-gray-100 mb-4">
