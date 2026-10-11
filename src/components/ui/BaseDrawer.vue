@@ -68,6 +68,7 @@ const project = computed(() => {
         <button
           @click="taskDrawerStore.closeDrawer"
           class="bg-gray-50 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-600 hover:border-gray-300"
+          aria-label="Tombol tutup drawer"
         >
           <X size="18" />
         </button>
@@ -131,6 +132,7 @@ const project = computed(() => {
             <button
               class="bg-gray-50 text-gray-400 p-1 rounded-full border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-600 hover:border-gray-300"
               @click.stop="modalStore.openModal('createSubtask', taskDrawerStore.activeTask)"
+              aria-label="Tombol buka modal tambah subtask"
             >
               <CirclePlus :size="14" />
             </button>
@@ -142,7 +144,7 @@ const project = computed(() => {
               :key="subtask.id"
               :for="subtask.id"
             >
-              <label class="flex items-center gap-2">
+              <label class="flex items-center gap-2" :for="subtask.id">
                 <input
                   type="checkbox"
                   :id="subtask.id"
@@ -165,6 +167,7 @@ const project = computed(() => {
                     subtaskId: subtask.id,
                   })
                 "
+                aria-label="Tombol hapus subtask"
               >
                 <X :size="14" />
               </button>
@@ -175,6 +178,7 @@ const project = computed(() => {
           <button
             class="flex items-center gap-2 uppercase text-xs font-semibold text-red-300 p-2 rounded-lg cursor-pointer hover:text-red-500 hover:bg-red-50 transition duration-300 ease-in-out"
             @click.stop="modalStore.openModal('confirmDelete', taskDrawerStore.activeTask)"
+            aria-label="Tombol hapus task"
           >
             <Trash :size="18" />
             <p>delete task</p>

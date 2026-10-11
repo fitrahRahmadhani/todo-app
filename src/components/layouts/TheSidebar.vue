@@ -66,7 +66,7 @@ function handleNavClick() {
     <button
       class="md:hidden absolute right-4 top-4 bg-white text-gray-400 p-2 border border-gray-200 rounded-xl hover:text-gray-600 hover:bg-gray-50 transition duration-300"
       @click="sidebarStore.close()"
-      aria-label="Close menu"
+      aria-label="Tombol tutup menu"
     >
       <X :size="18" />
     </button>
@@ -75,6 +75,7 @@ function handleNavClick() {
     <button
       class="hidden md:block absolute -right-4 top-4 bg-white text-gray-400 p-2 border border-gray-200 rounded-xl hover:text-gray-600 hover:bg-gray-50 transition duration-300"
       @click="sidebarStore.isMinimize = !sidebarStore.isMinimize"
+      aria-label="Tombol toggle minimize"
     >
       <PanelRightOpen :size="18" v-if="!sidebarStore.isMinimize" />
       <PanelRightClose :size="18" v-if="sidebarStore.isMinimize" />
@@ -142,6 +143,7 @@ function handleNavClick() {
           <button
             class="text-gray-400 transition duration-300 cursor-pointer p-1 rounded-xl hover:text-red-500 hover:bg-red-50"
             @click.prevent.stop="modalStore.openModal('confirmDelete', project, 'project')"
+            aria-label="Tombol hapus project"
           >
             <X :size="12" />
           </button>
@@ -151,6 +153,7 @@ function handleNavClick() {
         type="button"
         class="w-full flex items-center justify-center p-2 border border-dashed border-gray-400 text-gray-400 rounded-lg mt-2 hover:bg-gray-50 hover:border-gray-500 hover:border-solid hover:text-gray-600 transition duration-300 ease-in-out"
         @click.stop="modalStore.openModal('createProject')"
+        aria-label="Tombol tambah project"
       >
         <Plus :size="18" />
       </button>

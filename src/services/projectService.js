@@ -1,9 +1,9 @@
 const STORAGE_KEY = 'projects'
 
 const DEFAULT_PROJECTS = [
-  { id: 'marketing', title: 'Marketing', color: '#EE1367' },
-  { id: 'desain', title: 'Desain', color: '#3F13EE' },
-  { id: 'finance', title: 'Finance', color: '#EE6413' },
+  { id: 'pribadi', title: 'Pribadi', color: '#EE1367' },
+  { id: 'kerja', title: 'Pekerjaan', color: '#3F13EE' },
+  { id: 'belajar', title: 'Belajar', color: '#EE6413' },
 ]
 
 export const projectService = {
