@@ -1,6 +1,14 @@
 @import 'tailwindcss';
 @plugin "../tailwind-forms.js";
 
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/font/Inter.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-sans: 'Inter', ui-sans-serif, sans-serif;
 }

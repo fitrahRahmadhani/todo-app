@@ -42,6 +42,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
       type="button"
       @click="isOpen = !isOpen"
       class="flex items-center gap-2 text-sm text-gray-600 px-3 py-2 rounded-lg border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-colors"
+      aria-label="Tombol buka dropdown priority"
     >
       <Flag :size="16" class="text-gray-600" />
       {{ selected.label }}
@@ -58,6 +59,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
         type="button"
         @click="selectPriority(priority)"
         class="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+        aria-label="Tombol pilih priority"
       >
         <span class="w-2 h-2 rounded-full shrink-0" :class="priority.color"></span>
         {{ priority.label }}

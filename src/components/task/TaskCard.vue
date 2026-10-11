@@ -27,15 +27,17 @@ const projectName = computed(() => {
     class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white py-4 px-4 sm:px-6 border border-gray-200 rounded-xl"
   >
     <div class="flex items-start sm:items-center gap-4 min-w-0">
-      <input
-        type="checkbox"
-        :id="task.id"
-        :checked="task.completed"
-        class="form-checkbox w-5 h-5 shrink-0 mt-1 sm:mt-0 rounded cursor-pointer border-gray-300 focus:ring-2"
-        :class="task.completed ? 'text-gray-400 focus:ring-gray-300' : ' focus:ring-blue-500'"
-        @click.stop
-        @change="taskStore.toggleTask(task.id)"
-      />
+      <label :for="task.id">
+        <input
+          type="checkbox"
+          :id="task.id"
+          :checked="task.completed"
+          class="form-checkbox w-5 h-5 shrink-0 mt-1 sm:mt-0 rounded cursor-pointer border-gray-300 focus:ring-2"
+          :class="task.completed ? 'text-gray-400 focus:ring-gray-300' : ' focus:ring-blue-500'"
+          @click.stop
+          @change="taskStore.toggleTask(task.id)"
+        />
+      </label>
       <div class="min-w-0">
         <p
           class="text-sm font-medium line-clamp-1 sm:truncate"
@@ -63,12 +65,14 @@ const projectName = computed(() => {
         <button
           class="text-gray-500 p-1 rounded-lg cursor-pointer hover:text-yellow-400 hover:bg-yellow-50 transition duration-300 ease-in-out"
           @click.stop="modalStore.openModal('editTask', task)"
+          aria-label="Tombol edit task"
         >
           <Pen :size="18" />
         </button>
         <button
           class="text-gray-500 p-1 rounded-lg cursor-pointer hover:text-red-400 hover:bg-red-50 transition duration-300 ease-in-out"
           @click.stop="modalStore.openModal('confirmDelete', task)"
+          aria-label="Tombol hapus task"
         >
           <Trash :size="18" />
         </button>

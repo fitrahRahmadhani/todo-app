@@ -43,7 +43,7 @@ watch(
         type="button"
         class="md:hidden text-gray-500 p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors shrink-0"
         @click="sidebarStore.toggle()"
-        aria-label="Toggle menu"
+        aria-label="Tombol toggle menu"
       >
         <Menu :size="20" />
       </button>

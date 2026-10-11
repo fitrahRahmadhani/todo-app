@@ -65,6 +65,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
         type="button"
         @click="selectProject(project)"
         class="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+        aria-label="Tombol pilih project"
       >
         <span
           class="w-2 h-2 rounded-full shrink-0"

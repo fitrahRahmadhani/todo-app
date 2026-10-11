@@ -1,146 +1,144 @@
 const STORAGE_KEY = 'tasks'
 
-const DEFAULT_TASKS = [
+// Tanggal relatif terhadap hari ini, supaya data demo selalu terasa "baru"
+const daysFromNow = (days) => {
+  const date = new Date()
+  date.setDate(date.getDate() + days)
+  return date.toISOString()
+}
+
+const createDefaultTasks = () => [
   {
     id: crypto.randomUUID(),
-    title: 'Review Q3 strategy proposal and prepare alignment presentation',
+    title: 'Selamat datang di NotoTask! Coba selesaikan tugas ini',
     completed: false,
     priority: 'high',
-    dueDate: new Date().toISOString(),
-    project: 'marketing',
+    dueDate: daysFromNow(0),
+    project: 'pribadi',
     description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur beatae earum exercitationem natus in repellat velit reprehenderit reiciendis dolore nostrum?',
-    createdAt: new Date().toISOString(),
+      'NotoTask adalah aplikasi todo list gratis tanpa login. Data tersimpan di browser Anda, jadi langsung pakai tanpa daftar.',
+    createdAt: daysFromNow(0),
     completedAt: '',
     subtasks: [
       {
         id: crypto.randomUUID(),
-        title: 'Kumpulkan data performa Q3 dari tiap channel',
+        title: 'Klik kotak centang untuk menandai selesai',
         completed: true,
       },
       {
         id: crypto.randomUUID(),
-        title: 'Susun draft slide strategi untuk Q4',
+        title: 'Buka tugas ini untuk melihat detailnya',
         completed: false,
       },
-      {
-        id: crypto.randomUUID(),
-        title: 'Minta review dari tim marketing lead',
-        completed: false,
-      },
+      { id: crypto.randomUUID(), title: 'Tambahkan tugas pertama Anda sendiri', completed: false },
     ],
   },
 
   {
     id: crypto.randomUUID(),
-    title: 'Prepare weekly team sync notes',
+    title: 'Siapkan agenda rapat mingguan tim',
     completed: false,
     priority: 'medium',
-    dueDate: new Date().toISOString(),
-    project: 'marketing',
-    description: 'Siapkan agenda dan catatan progres untuk sync mingguan tim.',
-    createdAt: new Date().toISOString(),
+    dueDate: daysFromNow(0),
+    project: 'kerja',
+    description: 'Tulis poin pembahasan dan rangkum progres tiap anggota sebelum rapat dimulai.',
+    createdAt: daysFromNow(-1),
     completedAt: '',
     subtasks: [
-      {
-        id: crypto.randomUUID(),
-        title: 'Tulis agenda meeting',
-        completed: true,
-      },
-      {
-        id: crypto.randomUUID(),
-        title: 'Rangkum progres masing-masing anggota',
-        completed: true,
-      },
+      { id: crypto.randomUUID(), title: 'Tulis agenda rapat', completed: true },
+      { id: crypto.randomUUID(), title: 'Rangkum progres masing-masing anggota', completed: false },
     ],
   },
 
   {
     id: crypto.randomUUID(),
-    title: 'Fix responsive layout bug on mobile checkout page',
-    completed: false,
-    priority: 'high',
-    dueDate: new Date().toISOString(),
-    project: 'desain',
-    description:
-      'Tombol checkout tertutup keyboard di beberapa device Android saat form alamat dibuka.',
-    createdAt: new Date().toISOString(),
-    completedAt: '',
-    subtasks: [
-      {
-        id: crypto.randomUUID(),
-        title: 'Reproduce bug di emulator Android',
-        completed: true,
-      },
-      {
-        id: crypto.randomUUID(),
-        title: 'Perbaiki CSS viewport pada form alamat',
-        completed: false,
-      },
-      {
-        id: crypto.randomUUID(),
-        title: 'Test ulang di 3 ukuran layar berbeda',
-        completed: false,
-      },
-      {
-        id: crypto.randomUUID(),
-        title: 'Deploy ke staging untuk QA',
-        completed: false,
-      },
-    ],
-  },
-
-  {
-    id: crypto.randomUUID(),
-    title: 'Prepare onboarding materials for new hire',
+    title: 'Belanja kebutuhan dapur',
     completed: false,
     priority: 'low',
-    dueDate: new Date().toISOString(),
-    project: 'finance',
-    description: 'Siapkan dokumen onboarding dan akses tools untuk karyawan baru minggu depan.',
-    createdAt: new Date().toISOString(),
+    dueDate: daysFromNow(0),
+    project: 'pribadi',
+    description: 'Cek stok bahan di rumah dulu sebelum berangkat ke pasar.',
+    createdAt: daysFromNow(-1),
     completedAt: '',
     subtasks: [
-      {
-        id: crypto.randomUUID(),
-        title: 'Siapkan akun email dan Slack',
-        completed: false,
-      },
-      {
-        id: crypto.randomUUID(),
-        title: 'Update dokumen panduan onboarding',
-        completed: false,
-      },
+      { id: crypto.randomUUID(), title: 'Buat daftar belanja', completed: false },
+      { id: crypto.randomUUID(), title: 'Beli sayur dan buah', completed: false },
     ],
   },
 
   {
     id: crypto.randomUUID(),
-    title: 'Finalize budget report for December',
-    completed: true,
-    priority: 'medium',
-    dueDate: new Date().toISOString(),
-    project: 'finance',
-    description: 'Rekap dan finalisasi laporan budget bulanan sebelum dikirim ke manajemen.',
-    createdAt: new Date().toISOString(),
+    title: 'Kirim laporan progres proyek ke atasan',
+    completed: false,
+    priority: 'high',
+    dueDate: daysFromNow(1),
+    project: 'kerja',
+    description: 'Laporan berisi pencapaian minggu ini dan rencana minggu depan.',
+    createdAt: daysFromNow(-2),
     completedAt: '',
     subtasks: [
-      {
-        id: crypto.randomUUID(),
-        title: 'Konsolidasi data dari tiap divisi',
-        completed: true,
-      },
-      {
-        id: crypto.randomUUID(),
-        title: 'Review dengan finance lead',
-        completed: true,
-      },
-      {
-        id: crypto.randomUUID(),
-        title: 'Kirim laporan final ke manajemen',
-        completed: true,
-      },
+      { id: crypto.randomUUID(), title: 'Kumpulkan data pencapaian', completed: true },
+      { id: crypto.randomUUID(), title: 'Susun ringkasan laporan', completed: false },
+      { id: crypto.randomUUID(), title: 'Kirim lewat email', completed: false },
     ],
+  },
+
+  {
+    id: crypto.randomUUID(),
+    title: 'Belajar dasar Vue 3 Composition API',
+    completed: false,
+    priority: 'medium',
+    dueDate: daysFromNow(3),
+    project: 'belajar',
+    description: 'Pelajari ref, computed, watch, dan cara membuat composable sendiri.',
+    createdAt: daysFromNow(-1),
+    completedAt: '',
+    subtasks: [
+      { id: crypto.randomUUID(), title: 'Baca dokumentasi resmi', completed: false },
+      { id: crypto.randomUUID(), title: 'Latihan membuat komponen sederhana', completed: false },
+    ],
+  },
+
+  {
+    id: crypto.randomUUID(),
+    title: 'Olahraga ringan 30 menit',
+    completed: false,
+    priority: 'low',
+    dueDate: daysFromNow(5),
+    project: 'pribadi',
+    description: 'Jalan pagi atau jogging santai untuk menjaga kebugaran.',
+    createdAt: daysFromNow(0),
+    completedAt: '',
+    subtasks: [],
+  },
+
+  {
+    id: crypto.randomUUID(),
+    title: 'Rapikan dan arsipkan dokumen bulan lalu',
+    completed: true,
+    priority: 'medium',
+    dueDate: daysFromNow(-1),
+    project: 'kerja',
+    description: 'Pindahkan dokumen lama ke folder arsip agar ruang kerja lebih rapi.',
+    createdAt: daysFromNow(-4),
+    completedAt: daysFromNow(-1),
+    subtasks: [
+      { id: crypto.randomUUID(), title: 'Pilah dokumen yang masih dipakai', completed: true },
+      { id: crypto.randomUUID(), title: 'Pindahkan sisanya ke arsip', completed: true },
+    ],
+  },
+
+  {
+    id: crypto.randomUUID(),
+    title: 'Bayar tagihan listrik dan internet',
+    completed: true,
+    priority: 'high',
+    dueDate: daysFromNow(-2),
+    project: 'pribadi',
+    description: 'Pembayaran bulanan sudah selesai.',
+    createdAt: daysFromNow(-5),
+    completedAt: daysFromNow(-2),
+    subtasks: [],
   },
 ]
 
@@ -148,8 +146,9 @@ export const taskService = {
   getAll() {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw == null) {
-      this.saveAll(DEFAULT_TASKS)
-      return DEFAULT_TASKS
+      const defaults = createDefaultTasks()
+      this.saveAll(defaults)
+      return defaults
     }
     return JSON.parse(raw)
   },

@@ -69,6 +69,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
             type="button"
             @click="isPickerOpen = !isPickerOpen"
             class="flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 text-sm text-gray-600 hover:border-blue-500 hover:bg-blue-50 transition-colors"
+            aria-label="Tombol pilih warna project"
           >
             <span
               class="w-4 h-4 rounded-full ring-1 ring-black/10 shrink-0"
@@ -95,6 +96,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
         <button
           class="px-4 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
           @click="modalStore.closeModal()"
+          aria-label="Tombol tutup modal"
         >
           Cancel
         </button>
@@ -102,6 +104,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
           class="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           :disabled="!title.trim()"
           @click="handleSave()"
+          aria-label="Tombol tambah project"
         >
           Create Project
         </button>

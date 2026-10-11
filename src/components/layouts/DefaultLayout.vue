@@ -94,6 +94,7 @@ function handleAddNewTask() {
                       <button
                         type="button"
                         class="flex items-center gap-2 text-sm text-gray-600 px-3 py-2 rounded-lg border border-gray-200 hover:text-blue-500 hover:border-blue-500 hover:bg-blue-50 transition-colors duration-300"
+                        aria-label="Tombol pilih tanggal"
                       >
                         <span class="p-px"><Calendar :size="18" /></span>
                         {{ newTaskDate ? formatDateTime(newTaskDate) : '' }}
@@ -105,6 +106,7 @@ function handleAddNewTask() {
                     type="button"
                     class="flex items-center gap-1.5 text-sm font-medium px-3 py-2 rounded-lg bg-blue-500 text-white shrink-0 hover:bg-blue-600 active:bg-blue-700 transition-colors"
                     @click="handleAddNewTask"
+                    aria-label="Tombol tambah task"
                   >
                     <Plus :size="16" />
                     Add Task

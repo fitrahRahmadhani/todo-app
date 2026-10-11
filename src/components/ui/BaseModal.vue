@@ -24,6 +24,7 @@ const emit = defineEmits(['close'])
               <button
                 @click="emit('close')"
                 class="bg-gray-50 text-gray-400 p-1 rounded-lg border border-white hover:bg-gray-50 transition-all duration-300 ease-in-out hover:text-gray-600 hover:border-gray-300"
+                aria-label="Tombol tutup modal"
               >
                 <X :size="18" />
               </button>
