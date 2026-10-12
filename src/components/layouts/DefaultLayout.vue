@@ -109,7 +109,7 @@ function handleAddNewTask() {
                     aria-label="Tombol tambah task"
                   >
                     <Plus :size="16" />
-                    Add Task
+                    <span class="hidden md:inline">Add Task</span>
                   </button>
                 </div>
               </div>
