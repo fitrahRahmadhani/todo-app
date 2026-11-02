@@ -87,7 +87,7 @@ export const useTaskStore = defineStore('task', () => {
     if (taskIndex === -1) return
 
     tasks.value.splice(taskIndex, 1)
-    toast.success('Subtask deleted successfully')
+    toast.success('Task deleted successfully')
   }
 
   function addSubtask({ taskId, title }) {
