@@ -72,14 +72,14 @@ export const useTaskStore = defineStore('task', () => {
     }
     console.log(newTask)
     tasks.value.push(newTask)
-    toast.success('Subtask created successfully')
+    toast.success('Task created successfully')
   }
 
   function updateTask(taskId, updates) {
     const task = tasks.value.find((t) => t.id === taskId)
     if (!task) return
     Object.assign(task, updates)
-    toast.success('Subtask updated successfully')
+    toast.success('Task updated successfully')
   }
 
   function destroyTask(taskId) {
